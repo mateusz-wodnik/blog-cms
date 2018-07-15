@@ -1,4 +1,4 @@
 import mongoose from 'mongoose';
 
-const database = 'example-backbone'
+const database = 'blog'
 mongoose.connect(`mongodb://localhost/${database}`);
