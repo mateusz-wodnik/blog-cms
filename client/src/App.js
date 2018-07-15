@@ -2,6 +2,10 @@ import React, { Component } from 'react';
 import logo from './logo.svg';
 import './App.css';
 
+import { connect } from 'react-redux';
+import '../node_modules/bootstrap/dist/css/bootstrap.css';
+import { hot } from 'react-hot-loader';
+
 class App extends Component {
   render() {
     return (
@@ -18,4 +22,4 @@ class App extends Component {
   }
 }
 
-export default App;
+export default connect(null, null)(hot(module)(App));
