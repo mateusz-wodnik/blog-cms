@@ -1,0 +1,29 @@
+@import "../../mixins.sass"
+
+.slider
+  +e(item)
+    position: relative
+    display: flex
+    justify-content: center
+    align-items: center
+    height: 100%
+  +e(caption)
+    position: absolute
+    padding: 25px
+    width: 30%
+    border: 30px solid rgba(0,0,0,0.2)
+    background: #ffffff
+    text-transform: uppercase
+    text-align: center
+  +e(title)
+  +e(btn)
+    padding: 10px 30px
+    border: 2px solid var(--bg-pink)!important
+    cursor: pointer
+    font-weight: 900
+    transition: 0.3s
+    &:hover
+      background: rgba(232, 178, 205, 0.3)
+  +e(img)
+    height: 100%
+    user-select: none
