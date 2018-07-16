@@ -1,0 +1,29 @@
+@import "../../mixins.sass"
+
+.post
+  display: flex
+  flex-flow: column
+  //align-items: center
+  +e(header)
+    text-align: center
+  +e(category)
+    text-transform: uppercase
+    color: var(--text-pink)
+  +e(title)
+    text-transform: uppercase
+    color: #000
+  +e(date)
+  color: var(--grey)
+  +e(body)
+  +e(img)
+    width: 100%
+  +e(footer)
+    display: flex
+    justify-content: space-between
+    padding: 10px
+    border-bottom: 1px solid var(--grey)
+    border-top: 1px solid var(--grey)
+  +e(social)
+    padding: 0 10px
+  +e(comments)
+    color: var(--grey)

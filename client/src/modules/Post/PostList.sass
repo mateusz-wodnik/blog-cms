@@ -1,0 +1,13 @@
+@import "../../mixins.sass"
+
+.post-list
+  +e(select)
+    display: flex
+    justify-content: center
+  +e(btn)
+    padding: 10px 20px
+    margin: 0 10px
+    background: goldenrod
+    cursor: pointer
+    &:active
+      filter: brightness(50%)

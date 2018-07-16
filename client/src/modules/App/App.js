@@ -9,6 +9,7 @@ import Header from '../Header/Header';
 import Navigation from '../Navigation/Navigation';
 import Slider from '../Slider/Slider';
 import Selected from '../Selected/Selected';
+import PostList from '../Post/PostList'
 
 class App extends Component {
   render() {
@@ -18,6 +19,7 @@ class App extends Component {
 				<Navigation />
 				<Slider />
 				<Selected />
+				<PostList />
       </div>
     );
   }
