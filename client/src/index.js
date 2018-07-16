@@ -6,7 +6,7 @@ import thunk from 'redux-thunk'
 import rootReducer from './reducers'
 import { BrowserRouter, Route } from 'react-router-dom'
 import './index.css';
-import App from './App';
+import App from './modules/App/App';
 import registerServiceWorker from './registerServiceWorker';
 
 const store = createStore(
