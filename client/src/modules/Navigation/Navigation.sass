@@ -2,21 +2,25 @@
 
 .nav
   display: flex
-  justify-content: space-evenly
+  justify-content: center
   width: 70%
+  height: 50px
   margin: auto
   +e(item)
+    display: flex
+    flex-flow: column
+    align-items: center
     text-transform: uppercase
-    min-width: 150px
+    width: 100%
     padding: 10px
-    position: relative
+    z-index: 1
     &:hover > .nav__item--dropdown
       display: flex
     +m(dropdown)
       background: var(--bg-pink)
       display: none
+      position: relative
     &--dropdown .nav__item--dropdown
-      //padding: 0
       display: none
       position: absolute
       left: 100%

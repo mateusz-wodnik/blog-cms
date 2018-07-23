@@ -4,6 +4,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faFacebook, faGoogle, faLinkedin, faPinterest, faTwitter } from '@fortawesome/free-brands-svg-icons/index'
 
 import './Post.css'
+import Comments from '../Comments/Comments'
 
 class Post extends Component {
 	constructor (props) {
@@ -11,7 +12,7 @@ class Post extends Component {
 		this.state = {
 			title: "",
 			date: "",
-			comments: "",
+			comments: [],
 			content: '',
 			next: {
 				link: 'met-gala',
@@ -62,6 +63,7 @@ class Post extends Component {
 						<Link to={prev.link} className="post__prev">{prev.name}</Link>
 						<Link to={next.link} className="post__next">{next.name}</Link>
 					</div>
+					<Comments comments={comments}/>
 				</footer>
 			</section>
 		)
@@ -73,7 +75,56 @@ export default Post;
 const data = {
 	"title": "Lody jagodowe",
 	"date" : "7.05.2018",
-	"comments": ["123sd123as123", "123sd123as123", "123sd123as123", "123sd123as123", "123sd123as123", "123sd123as123"],
+	"comments": [
+		{
+			date: new Date(1234124142877),
+			name: "Małgosia",
+			text: "Lorem ipsum dolor sit amet, consectetur adipisicing elit. Accusantium aperiam dolorum magnam maxime minima nesciunt nisi quos reiciendis vel voluptatem!",
+			response: [
+				{
+					name: "Gosia",
+					text: "Dziękuję bardzo",
+					date: new Date(1234234356334)
+				}
+			]
+		},
+		{
+			date: new Date(1434124142877),
+			name: "Nati",
+			text: "Lorem ipsum dolor sit amet, consectetur adipisicing elit. Accusantium aperiam dolorum magnam maxime minima nesciunt nisi quos reiciendis vel voluptatem!",
+			response: [
+				{
+					name: "Gosia",
+					text: "Dziękuję bardzo",
+					date: new Date(1234234356334)
+				}
+			]
+		},
+		{
+			date: new Date(1334124142877),
+			name: "Mati",
+			text: "Lorem ipsum dolor sit amet, consectetur adipisicing elit. Accusantium aperiam dolorum magnam maxime minima nesciunt nisi quos reiciendis vel voluptatem!",
+			response: [
+				{
+					name: "Gosia",
+					text: "Dziękuję bardzo",
+					date: new Date(1234234356334)
+				}
+			]
+		},
+		{
+			date: new Date(1434124142877),
+			name: "Pati",
+			text: "Lorem ipsum dolor sit amet, consectetur adipisicing elit. Accusantium aperiam dolorum magnam maxime minima nesciunt nisi quos reiciendis vel voluptatem!",
+			response: [
+				{
+					name: "Gosia",
+					text: "Dziękuję bardzo",
+					date: new Date(1234234356334)
+				}
+			]
+		}
+	],
 	content:
 		<div>
 			<p>W poście o trendach wiosna/lato 2018 już w pierwszym akapicie pisałam o sorbetowym zawrocie głowy, który funduje Nam moda w tym sezonie. Na wybiegach królują pastele! Tym razem to nie pudrowy róż czy mięta grają pierwsze skrzypce, ale jasny żółty oraz…rozbielony fiolet.</p>

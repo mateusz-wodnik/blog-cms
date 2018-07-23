@@ -1,4 +1,5 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 import './Header.css';
 import logo from './logo.jpg'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
@@ -15,7 +16,9 @@ const Header = () => (
 				<button className="header__icon header__icon--search"><FontAwesomeIcon icon={faSearch}/></button>
 			</div>
 		</div>
-		<img src={logo} alt="" className="header__logo"/>
+		<Link to="/" className="header__logo">
+			<img src={logo} alt=""/>
+		</Link>
 	</header>
 );
 
