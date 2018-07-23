@@ -11,8 +11,8 @@ const server = http.Server(app);
 app.use(bodyParser.json());
 
 // Router
-import examples from './routes/example.routes'
-app.use('/api', examples);
+import post from './routes/post.routes'
+app.use('/api/posts', post);
 
 // Database config
 import './mongoConfig.js'

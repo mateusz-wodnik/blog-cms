@@ -12,9 +12,9 @@ var _bodyParser = require('body-parser');
 
 var _bodyParser2 = _interopRequireDefault(_bodyParser);
 
-var _example = require('./routes/example.routes');
+var _post = require('./routes/post.routes');
 
-var _example2 = _interopRequireDefault(_example);
+var _post2 = _interopRequireDefault(_post);
 
 require('./mongoConfig.js');
 
@@ -30,7 +30,7 @@ app.use(_bodyParser2.default.json());
 
 // Router
 
-app.use('/api', _example2.default);
+app.use('/api/posts', _post2.default);
 
 // Database config
 
