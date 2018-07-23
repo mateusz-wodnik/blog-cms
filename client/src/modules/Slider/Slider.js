@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React from 'react';
 import { Carousel } from 'react-responsive-carousel';
 import './Slider.css';
 import 'react-responsive-carousel/lib/styles/carousel.min.css';
@@ -33,7 +33,7 @@ const Slider = () => (
 						<h3 className="slider__title">{img.title}</h3>
 						<button className="slider__btn">Więcej...</button>
 					</div>
-					<img src={img.src} className="slider__img"/>
+					<img src={img.src} alt="slider" className="slider__img"/>
 				</div>
 			))}
 		</Carousel>

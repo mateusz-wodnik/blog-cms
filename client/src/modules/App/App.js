@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import { Route, Switch } from 'react-router-dom'
 import './App.css';
 
 import { connect } from 'react-redux';
@@ -9,7 +10,9 @@ import Header from '../Header/Header';
 import Navigation from '../Navigation/Navigation';
 import Slider from '../Slider/Slider';
 import Selected from '../Selected/Selected';
-import PostList from '../Post/PostList'
+import PostList from '../PostList/PostList'
+import Footer from '../Footer/Footer'
+import Post from '../Post/Post'
 
 class App extends Component {
   render() {
@@ -17,9 +20,11 @@ class App extends Component {
       <div className="blog">
         <Header />
 				<Navigation />
-				<Slider />
-				<Selected />
-				<PostList />
+				<Route exact path={"/"} component={Slider}/>
+				<Route exact path={"/"} component={Selected}/>
+				<Route exact path={"/"} component={PostList}/>
+				<Route path={'/:post'} component={Post}/>
+				<Footer />
       </div>
     );
   }

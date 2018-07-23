@@ -29,7 +29,7 @@ const data = [
 const Selected = () => (
 	<section className="blog__selected selected">
 		<ModuleHeader title={"Polecane posty"} />
-		{data.map(item => <Box img={item.img} title={item.title} date={item.date}/>)}
+		{data.map((item, idx) => <Box key={idx} img={item.img} title={item.title} date={item.date}/>)}
 	</section>
 );
 

@@ -1,29 +1,55 @@
 @import "../../mixins.sass"
 
 .post
-  display: flex
-  flex-flow: column
-  //align-items: center
+  margin: auto
   +e(header)
-    text-align: center
-  +e(category)
-    text-transform: uppercase
-    color: var(--text-pink)
+    display: flex
+    background: url("./images/hero.jpg") no-repeat
+    background-size: cover
+    color: var(--text-white)
+    height: 600px
+  +e(hero)
+    margin: auto
+    display: flex
+    flex-flow: column
+    align-items: center
   +e(title)
-    text-transform: uppercase
-    color: #000
-  +e(date)
-  color: var(--grey)
-  +e(body)
-  +e(img)
     width: 100%
-  +e(footer)
+    text-transform: uppercase
+  +e(info)
+    display: flex
+  +e(date)
+  +e(comments-number)
+  +e(social)
+    width: 100%
+    display: flex
+    justify-content: space-around
+  +e(content)
+    margin: auto
+    width: 80%
+    font-size: 1em
+    font-family: var(--font-blog)
+    img
+      width: 100%
+    h2
+      text-align: center
+  +e(change)
+    width: 90%
+    margin: auto
+    border-top: 1px solid var(--grey)
+    border-bottom: 1px solid var(--grey)
+    padding: 20px 0
     display: flex
     justify-content: space-between
-    padding: 10px
-    border-bottom: 1px solid var(--grey)
-    border-top: 1px solid var(--grey)
-  +e(social)
-    padding: 0 10px
-  +e(comments)
-    color: var(--grey)
+  +e(next)
+    &:after
+      content: ">"
+      padding: 10px
+      margin-left: 10px
+      border: 1px solid var(--main-pink)
+  +e(prev)
+    &:before
+      content: "<"
+      padding: 10px
+      margin-right: 10px
+      border: 1px solid var(--main-pink)
