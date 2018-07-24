@@ -1,9 +1,10 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 import './Post.css';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faFacebook, faTwitter, faGoogle, faLinkedin, faPinterest } from '@fortawesome/free-brands-svg-icons'
 
-const Post = ({category, title, date, comments, img}) => (
+const Post = ({category, title, date, comments, img, id}) => (
 	<div className="blog__post-prev post-prev">
 		<header className="post-prev__header">
 			<h5 className="post-prev__category">{category}</h5>
@@ -11,7 +12,9 @@ const Post = ({category, title, date, comments, img}) => (
 			<p className="post-prev__date">{date}</p>
 		</header>
 		<div className="post-prev__body">
-			<img className="post-prev__img" src={require(`./images/${img}`)} alt="main post-prev"/>
+			<Link to={`/${id}`}>
+				<img className="post-prev__img" src={`http://localhost:3000/images/${img}`} alt="main post-prev"/>
+			</Link>
 		</div>
 		<div className="post-prev__footer">
 			<div className="post-prev__social">

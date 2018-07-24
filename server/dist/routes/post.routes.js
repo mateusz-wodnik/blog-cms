@@ -19,9 +19,9 @@ var router = new _express.Router();
 // Get all Posts
 router.route('/').get(PostController.getPosts);
 
-router.route('/').post(_post2.validator, PostController.addPost);
+router.route('/').post(PostController.addPost);
 
-router.route('/:id').put(_post2.validator, PostController.updatePost);
+router.route('/:id').put(PostController.updatePost);
 
 router.route('/:id').delete(PostController.deletePost);
 

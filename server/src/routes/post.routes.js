@@ -7,9 +7,9 @@ import { validator } from './validators/post.validator'
 // Get all Posts
 router.route('/').get(PostController.getPosts);
 
-router.route('/').post(validator, PostController.addPost);
+router.route('/').post(PostController.addPost);
 
-router.route('/:id').put(validator, PostController.updatePost);
+router.route('/:id').put(PostController.updatePost);
 
 router.route('/:id').delete(PostController.deletePost);
 

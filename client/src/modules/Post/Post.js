@@ -14,6 +14,7 @@ class Post extends Component {
 			date: "",
 			comments: [],
 			content: '',
+			img: '',
 			next: {
 				link: 'met-gala',
 				name: 'Jak religia inspituje modę? - MET Gala'
@@ -25,21 +26,26 @@ class Post extends Component {
 		}
 	}
 	componentDidMount() {
-		// Fetch
-		const {title, date, comments, content} = data
-		this.setState({
-			title,
-			date,
-			comments,
-			content
-		})
+		fetch(`http://localhost:3000/api/posts/${this.props.match.params.post}`)
+			.then(res => res.json())
+			.then(res => {
+				const {title, date, comments, content, img} = res
+				document.querySelector('#headerImage').style.backgroundImage = `url(http://localhost:3000/images/${img})`
+				this.setState({
+					title,
+					date,
+					comments,
+					content,
+					img
+				})
+			})
 	}
 
 	render() {
-		const {title, date, comments, content, next, prev} = this.state
+		const {title, date, comments, content, next, prev, img} = this.state
 		return(
 			<section className="blog__post post">
-				<header className="post__header">
+				<header id="headerImage" className="post__header">
 					<div className="post__hero">
 						<h2 className="post__title">{title}</h2>
 						<div className="post__info">
@@ -55,9 +61,10 @@ class Post extends Component {
 						</div>
 					</div>
 				</header>
-				<article className="post__content">
-					{content}
-				</article>
+				<article
+					className="post__content"
+					dangerouslySetInnerHTML={{__html: content}}
+				></article>
 				<footer className="post__footer">
 					<div className="post__change">
 						<Link to={prev.link} className="post__prev">{prev.name}</Link>

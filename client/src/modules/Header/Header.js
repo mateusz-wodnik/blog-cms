@@ -1,7 +1,6 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import './Header.css';
-import logo from './logo.jpg'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faSearch } from '@fortawesome/free-solid-svg-icons'
 import { faFacebook, faInstagram } from '@fortawesome/free-brands-svg-icons'
@@ -17,7 +16,7 @@ const Header = () => (
 			</div>
 		</div>
 		<Link to="/" className="header__logo">
-			<img src={logo} alt=""/>
+			<img src={`http://localhost:3000/images/logo.jpg`} alt="logo"/>
 		</Link>
 	</header>
 );

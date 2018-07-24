@@ -5,7 +5,6 @@ import placeholder from './placeholder.jpeg'
 
 class Comments extends Component {
 	render() {
-		console.log(this.props)
 		const {comments} = this.props
 		return(
 			<section className="blog__comments comments">
@@ -30,7 +29,6 @@ class Comments extends Component {
 
 const Comment = ({text, name, img, date, response=[]}) => (
 	<div className="comments__comment comment">
-		{console.log(response)}
 		<header className="comment__header">
 			<img className="comment__img" src={img || placeholder} alt=""/>
 		</header>

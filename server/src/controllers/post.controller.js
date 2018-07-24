@@ -3,12 +3,16 @@ import { validationResult } from 'express-validator/check'
 
 export function getPosts(req, res) {
 	console.log('Received GET request')
-	Post.find((err, posts) => {
-		if (err) {
-			res.status(500).send(err);
-		}
-		res.send(posts);
-	});
+	const short = req.query.short === 'true' ? '-content' : ''
+	let query = {}
+	if(req.query.featured === 'true') {
+		query = {featured: true}
+	} else if(req.query.slider === 'true') {
+		query = {slider: true}
+	}
+	Post.find(query, short)
+		.then(posts => res.send(posts))
+		.catch(err => res.send(err))
 }
 
 export function addPost(req, res) {

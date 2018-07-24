@@ -22,11 +22,17 @@ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { de
 
 function getPosts(req, res) {
 	console.log('Received GET request');
-	_post2.default.find(function (err, posts) {
-		if (err) {
-			res.status(500).send(err);
-		}
-		res.send(posts);
+	var short = req.query.short === 'true' ? '-content' : '';
+	var query = {};
+	if (req.query.featured === 'true') {
+		query = { featured: true };
+	} else if (req.query.slider === 'true') {
+		query = { slider: true };
+	}
+	_post2.default.find(query, short).then(function (posts) {
+		return res.send(posts);
+	}).catch(function (err) {
+		return res.send(err);
 	});
 }
 

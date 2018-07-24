@@ -2,8 +2,6 @@ import React, { Component } from 'react';
 import './PostList.css'
 import Post from './Post';
 
-import data from './posts.data'
-
 class PostList extends Component {
 	constructor (props) {
 		super(props)
@@ -14,10 +12,16 @@ class PostList extends Component {
 	}
 
 	componentDidMount() {
-		const posts = data
-		this.setState({posts})
-		const render = posts.slice(0, 3)
-		this.setState({render})
+		fetch('http://localhost:3000/api/posts?short=true')
+			.then(res => res.json())
+			.then(res => {
+				const render = res.slice(0, 3)
+				this.setState({
+					posts: res,
+					render
+				})
+			})
+			.catch(err => console.log(err))
 	}
 
 	handleSelect = (e) => {
@@ -42,10 +46,11 @@ class PostList extends Component {
 					<Post
 						key={idx}
 						title={post.title}
-						date={post.date}
+						date={post.createdAt}
 						comments={post.comments}
 						category={post.category}
 						img={post.img}
+						id={post._id}
 					/>)}
 					<div className="post-list__select">
 						{this.renderButtons()}
