@@ -26,11 +26,11 @@ class Post extends Component {
 		}
 	}
 	componentDidMount() {
-		fetch(`http://localhost:3000/api/posts/${this.props.match.params.post}`)
+		fetch(`/api/posts/${this.props.match.params.post}`)
 			.then(res => res.json())
 			.then(res => {
 				const {title, date, comments, content, img} = res
-				document.querySelector('#headerImage').style.backgroundImage = `url(http://localhost:3000/images/${img})`
+				document.querySelector('#headerImage').style.backgroundImage = `url(/images/${img})`
 				this.setState({
 					title,
 					date,
@@ -136,11 +136,11 @@ const data = {
 		<div>
 			<p>W poście o trendach wiosna/lato 2018 już w pierwszym akapicie pisałam o sorbetowym zawrocie głowy, który funduje Nam moda w tym sezonie. Na wybiegach królują pastele! Tym razem to nie pudrowy róż czy mięta grają pierwsze skrzypce, ale jasny żółty oraz…rozbielony fiolet.</p>
 			<p>Jak dokładnie wygląda ten kolor? Zamknijcie oczy i wyobraźcie sobie pole lawendy…albo jagodowe lody…albo kwiaty bzu…!</p>
-			<img src='http://localhost:3000/images/post-1.content-1.jpg'/>
+			<img src='/images/post-1.content-1.jpg'/>
 			<p>Pytacie z czym jeść takie jagodowe lody? Wszystkie pastele dobrze czują się w swoim towarzystwie. Połączenie pudrowego różu, baby blue i jasnego fioletu – nigdy Was nie zawiedzie. Taka kombinacja będzie świetna na letnie uroczystości, takie jak komunie czy wesela, i doskonale sprawdzi się na randce 😀 Doda Wam delikatności i świeżości – dziewczęcego uroku.</p>
-			<img src='http://localhost:3000/images/post-1.content-2.png'/>
+			<img src='/images/post-1.content-2.png'/>
 			<p>Co jeżeli nie chcesz być rusałką, a wolisz wyglądać jak „lawendowa kobieta sukcesu”? Połącz naszą jagodę z brązem, szarościami, kremowym, a nawet UWAGA bordowym i krwistą czerwienią!</p>
-			<img src='http://localhost:3000/images/post-1.content-3.png'/>
+			<img src='/images/post-1.content-3.png'/>
 			<h2>MOJA PROPOZYCJA</h2>
 			<p>Ci którzy dobrze mnie znają wiedzą, że nie mam nic wspólnego ze sportowym stylem, ale tym razem chciałam zrobić wyjątek. Modne w tym sezonie spodnie paperbag, w kolorze lawendowym, połączyłam z pasującymi do nich butami – tworząc total look. Na górę wybrałam krótką, pudrową, jeansową kurtkę. </p>
 			<h2>NA ZDJĘCIACH MAM NA SOBIE</h2>
@@ -149,21 +149,21 @@ const data = {
 				<li><a href="http://www.hm.pl">Spodnie - MANGO</a></li>
 				<li><a href="http://www.hm.pl">Buty - Reebok x Local Heroes</a></li>
 			</ol>
-			<img src='http://localhost:3000/images/post-1.content-4.jpg'/>
-			<img src='http://localhost:3000/images/post-1.content-5.jpg'/>
-			<img src='http://localhost:3000/images/post-1.content-6.jpg'/>
-			<img src='http://localhost:3000/images/post-1.content-7.jpg'/>
-			<img src='http://localhost:3000/images/post-1.content-8.jpg'/>
-			<img src='http://localhost:3000/images/post-1.content-9.jpg'/>
-			<img src='http://localhost:3000/images/post-1.content-10.jpg'/>
-			<img src='http://localhost:3000/images/post-1.content-11.jpg'/>
-			<img src='http://localhost:3000/images/post-1.content-12.jpg'/>
-			<img src='http://localhost:3000/images/post-1.content-13.jpg'/>
-			<img src='http://localhost:3000/images/post-1.content-14.jpg'/>
-			<img src='http://localhost:3000/images/post-1.content-15.jpg'/>
-			<img src='http://localhost:3000/images/post-1.content-16.jpg'/>
-			<img src='http://localhost:3000/images/post-1.content-17.jpg'/>
+			<img src='/images/post-1.content-4.jpg'/>
+			<img src='/images/post-1.content-5.jpg'/>
+			<img src='/images/post-1.content-6.jpg'/>
+			<img src='/images/post-1.content-7.jpg'/>
+			<img src='/images/post-1.content-8.jpg'/>
+			<img src='/images/post-1.content-9.jpg'/>
+			<img src='/images/post-1.content-10.jpg'/>
+			<img src='/images/post-1.content-11.jpg'/>
+			<img src='/images/post-1.content-12.jpg'/>
+			<img src='/images/post-1.content-13.jpg'/>
+			<img src='/images/post-1.content-14.jpg'/>
+			<img src='/images/post-1.content-15.jpg'/>
+			<img src='/images/post-1.content-16.jpg'/>
+			<img src='/images/post-1.content-17.jpg'/>
 			<h2>ZAINSPIRUJ SIĘ</h2>
-			<img src='http://localhost:3000/images/post-1.content-18.png'/>
+			<img src='/images/post-1.content-18.png'/>
 		</div>
 }

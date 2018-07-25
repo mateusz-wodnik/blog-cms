@@ -11,7 +11,7 @@ class Selected extends Component {
 		}
 	}
 	componentDidMount() {
-		fetch('http://localhost:3000/api/posts?short=true&featured=true')
+		fetch('/api/posts?short=true&featured=true')
 			.then(res => res.json())
 			.then(selected => this.setState({selected}))
 	}

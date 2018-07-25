@@ -11,7 +11,7 @@ class Slider extends Component {
 		}
 	}
 	componentDidMount() {
-		fetch(`http://localhost:3000/api/posts?short=true&slider=true`)
+		fetch(`/api/posts?short=true&slider=true`)
 			.then(res => res.json())
 			.then(slider => {
 				console.log(slider)
@@ -32,7 +32,7 @@ class Slider extends Component {
 								<h3 className="slider__title">{slide.title}</h3>
 								<button className="slider__btn">Więcej...</button>
 							</div>
-							<img src={`http://localhost:3000/images/${slide.img}`} alt="slider" className="slider__img"/>
+							<img src={`/images/${slide.img}`} alt="slider" className="slider__img"/>
 						</div>
 					))}
 				</Carousel>

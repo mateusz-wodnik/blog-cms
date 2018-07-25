@@ -16,7 +16,7 @@ const Header = () => (
 			</div>
 		</div>
 		<Link to="/" className="header__logo">
-			<img src={`http://localhost:3000/images/logo.jpg`} alt="logo"/>
+			<img src={`/images/logo.jpg`} alt="logo"/>
 		</Link>
 	</header>
 );

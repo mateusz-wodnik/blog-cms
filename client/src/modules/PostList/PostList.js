@@ -12,7 +12,7 @@ class PostList extends Component {
 	}
 
 	componentDidMount() {
-		fetch('http://localhost:3000/api/posts?short=true')
+		fetch('/api/posts?short=true')
 			.then(res => res.json())
 			.then(res => {
 				const render = res.slice(0, 3)

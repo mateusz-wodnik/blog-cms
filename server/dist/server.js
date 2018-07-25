@@ -36,7 +36,7 @@ app.use('/api/posts', _post2.default);
 
 
 // Serve static files
-app.use(_express2.default.static(__dirname + '/../public'));
+app.use(_express2.default.static(__dirname + '/../../client/build'));
 
 server.listen(port, function () {
   console.log('server listens on port: ' + port);
