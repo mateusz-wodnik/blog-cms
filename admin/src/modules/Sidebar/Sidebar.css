@@ -1,0 +1,10 @@
+.sidebar {
+  width: 80px;
+  background: rgba(var(--color-3), 1); }
+  .sidebar__logo {
+    padding: 5px; }
+  .sidebar__link {
+    background: rgba(var(--color-4), 1);
+    font-size: 2em; }
+    .sidebar__link:hover {
+      background: rgba(var(--color-4), 0.5); }

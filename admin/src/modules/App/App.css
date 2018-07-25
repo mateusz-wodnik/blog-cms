@@ -1,0 +1,11 @@
+.admin {
+  display: grid;
+  grid-template-columns: auto 1fr;
+  grid-template-rows: auto;
+  grid-template-areas: "sidebar main";
+  height: 100vh;
+  overflow: hidden; }
+  .admin aside {
+    grid-area: sidebar; }
+  .admin main {
+    grid-area: main; }

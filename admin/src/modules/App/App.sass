@@ -1,1 +1,13 @@
 @import "../../mixins.sass"
+
+.admin
+  display: grid
+  grid-template-columns: auto 1fr
+  grid-template-rows: auto
+  grid-template-areas: "sidebar main"
+  height: 100vh
+  overflow: hidden
+  aside
+    grid-area: sidebar
+  main
+    grid-area: main
