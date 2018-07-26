@@ -27,8 +27,8 @@ class App extends Component {
     return (
       <div className="admin">
 				<Route path={`/`} component={Sidebar} />
-				<Route path={`/new-post`} render={() => <NewPost categories={categories} />} />
-				<Route path={`/edit-post`} render={() => <EditPost categories={categories}/>} />
+				<Route path={`/new-post`} render={(props) => <NewPost {...props} categories={categories} />} />
+				<Route path={`/edit-post`} render={(props) => <EditPost {...props} categories={categories}/>} />
       </div>
     );
   }
