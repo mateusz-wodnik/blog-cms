@@ -8,10 +8,16 @@
   height: 100px;
   overflow: auto; }
 
-.new-post__add {
-  background: rgba(var(--color-5), 1);
-  width: 50%;
-  height: 100%; }
-
-.new-post__live {
-  width: 50%; }
+.new-post {
+  display: flex; }
+  .new-post__add {
+    padding: 10px;
+    background: rgba(var(--color-5), 1);
+    transition: 1s;
+    overflow: hidden;
+    flex: 1; }
+  .new-post__live {
+    height: 100vh;
+    overflow: auto;
+    flex: 1;
+    transition: 1s; }

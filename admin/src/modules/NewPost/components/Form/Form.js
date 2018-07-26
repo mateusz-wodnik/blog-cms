@@ -47,6 +47,38 @@ const Form = ({categories, postCategories, selected, carousel, handler}) => (
 				/>
 			</div>
 		</div>
+		<div className="form-group">
+			<input type="text"
+						 className="form-control"
+						 id="prev-name"
+						 name="prev"
+						 aria-describedby="title"
+						 placeholder="text"
+			/>
+			<input type="text"
+						 className="form-control"
+						 id="prev-link"
+						 name="prev"
+						 aria-describedby="title"
+						 placeholder="link"
+			/>
+		</div>
+		<div className="form-group">
+			<input type="text"
+						 className="form-control"
+						 id="next-name"
+						 name="next"
+						 aria-describedby="title"
+						 placeholder="text"
+			/>
+			<input type="text"
+						 className="form-control"
+						 id="next-link"
+						 name="next"
+						 aria-describedby="title"
+						 placeholder="link"
+			/>
+		</div>
 	</form>
 )
 

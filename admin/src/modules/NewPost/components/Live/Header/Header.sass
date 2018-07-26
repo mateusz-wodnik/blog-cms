@@ -1,0 +1,29 @@
+@import url('https://fonts.googleapis.com/css?family=Montserrat|PT+Sans|Raleway')
+@import "../../../../../mixins.sass"
+
+.header
+  display: flex
+  flex-flow: column
+  +e(top)
+    display: flex
+    justify-content: space-between
+    text-transform: uppercase
+    border-bottom: 2px solid var(--grey)
+  +e(caption)
+    font-family: var(--font-support)
+  +e(social)
+    display: flex
+    align-items: center
+  +e(icon)
+    padding: 0 10px
+    color: var(--text-main)
+    font-size: 1.2em
+    +m(fb)
+    +m(ig)
+    +m(search)
+      border-left: 2px solid var(--grey)
+  +e(logo)
+    display: flex
+    img
+      margin: auto
+      width: 80%

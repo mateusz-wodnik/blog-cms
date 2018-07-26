@@ -1,0 +1,41 @@
+.comments {
+  width: 90%;
+  margin: auto;
+  display: flex;
+  flex-flow: column; }
+  .comments__add {
+    display: flex; }
+  .comments__img {
+    width: 60px; }
+  .comments__form {
+    display: flex;
+    flex-flow: column;
+    justify-content: space-between;
+    width: 50%;
+    margin-left: 20px; }
+  .comments__name, .comments__text {
+    background: transparent;
+    border: 2px solid var(--bg-pink);
+    color: var(--font-main); }
+  .comments__submit {
+    padding: 0 5px;
+    margin-left: 5px;
+    border: 2px solid var(--bg-pink); }
+  .comments__content {
+    margin-top: 20px; }
+
+.comment {
+  display: flex;
+  margin: 10px 0; }
+  .comment__img {
+    width: 50px; }
+  .comment__content {
+    margin-left: 20px; }
+  .comment__name {
+    margin: 0; }
+  .comment__date {
+    margin-left: 10px; }
+  .comment__text {
+    margin: 0; }
+  .comment__response {
+    margin-top: 20px; }

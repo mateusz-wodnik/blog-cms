@@ -1,0 +1,44 @@
+@import "../../../../../mixins.sass"
+
+.comments
+  width: 90%
+  margin: auto
+  display: flex
+  flex-flow: column
+  +e(header)
+  +e(add)
+    display: flex
+  +e(img)
+    width: 60px
+  +e(form)
+    display: flex
+    flex-flow: column
+    justify-content: space-between
+    width: 50%
+    margin-left: 20px
+  &__name, &__text
+    background: transparent
+    border: 2px solid var(--bg-pink)
+    color: var(--font-main)
+  +e(submit)
+    padding: 0 5px
+    margin-left: 5px
+    border: 2px solid var(--bg-pink)
+  +e(content)
+    margin-top: 20px
+
+.comment
+  display: flex
+  margin: 10px 0
+  +e(img)
+    width: 50px
+  +e(content)
+    margin-left: 20px
+  +e(name)
+    margin: 0
+  +e(date)
+    margin-left: 10px
+  +e(text)
+    margin: 0
+  +e(response)
+    margin-top: 20px
