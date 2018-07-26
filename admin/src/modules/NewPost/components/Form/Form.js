@@ -2,7 +2,7 @@ import React from 'react';
 
 import './Form.css'
 
-const Form = ({categories, postCategories, featured, slider, handler}) => (
+const Form = ({categories, postCategories, featured, slider, handler, title}) => (
 	<form className="new-post__form d-flex flex-wrap" onChange={handler}>
 		<div className="form-group w-100">
 			<input type="text"
@@ -11,6 +11,7 @@ const Form = ({categories, postCategories, featured, slider, handler}) => (
 						 name="title"
 						 aria-describedby="title"
 						 placeholder="Title"
+						 value={title}
 			/>
 		</div>
 		<div className="form-group form__list">

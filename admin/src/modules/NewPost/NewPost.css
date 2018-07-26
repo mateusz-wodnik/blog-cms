@@ -10,12 +10,18 @@
 
 .new-post {
   display: flex; }
-  .new-post__add {
+  .new-post__edit {
+    display: flex;
+    flex-flow: column;
     padding: 10px;
     background: rgba(var(--color-5), 1);
     transition: 1s;
     overflow: hidden;
     flex: 1; }
+  .new-post__save {
+    width: 100%;
+    font-size: 3em;
+    margin: auto; }
   .new-post__live {
     height: 100vh;
     overflow: auto;

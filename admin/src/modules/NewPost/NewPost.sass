@@ -3,13 +3,18 @@
 
 .new-post
   display: flex
-  +e(add)
+  +e(edit)
+    display: flex
+    flex-flow: column
     padding: 10px
     background: rgba(var(--color-5), 1)
     transition: 1s
     overflow: hidden
     flex: 1
-    //width: 0
+  +e(save)
+    width: 100%
+    font-size: 3em
+    margin: auto
   +e(live)
     height: 100vh
     overflow: auto

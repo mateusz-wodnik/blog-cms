@@ -90,16 +90,29 @@ class NewPost extends Component {
 		})
 	}
 
+	handleSave = () => {
+		const id = this.state.post._id || ''
+		fetch(`/api/posts/${id}`, {
+			headers: {
+				'Accept': 'application/json',
+				'Content-Type': 'application/json'
+			},
+			method: id ? "PUT" : "POST",
+			body: JSON.stringify(this.state.post)
+		})
+	}
+
 	render() {
-		const { featured, slider, categories } = this.state.post
+		const { featured, slider, categories, title } = this.state.post
 		return (
 			<main className="new-post">
-				<section className="new-post__add">
+				<section className="new-post__edit">
 					<Form
 						categories={this.props.categories}
 						postCategories={categories}
 						featured={featured}
 						slider={slider}
+						title={title}
 						handler={this.handlerPost}
 					/>
 					<Editor
@@ -111,6 +124,10 @@ class NewPost extends Component {
 							init_instance_callback: editor => this.setState({activeEditor: editor}),
 						}}
 					/>
+					<button
+						onClick={this.handleSave}
+						className="new-post__save btn btn-success"
+					>Save</button>
 				</section>
 				<section className="new-post__live">
 					<Header />
