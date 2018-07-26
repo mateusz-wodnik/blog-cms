@@ -1,0 +1,17 @@
+.new-post__form .form-group {
+  margin: 10px auto;
+  padding: 5px;
+  width: 30%;
+  background: rgba(var(--color-white), 0.8); }
+
+.form__list {
+  height: 100px;
+  overflow: auto; }
+
+.new-post__add {
+  background: rgba(var(--color-5), 1);
+  width: 50%;
+  height: 100%; }
+
+.new-post__live {
+  width: 50%; }
