@@ -9,6 +9,14 @@ const PostSchema = new Schema({
 	img: { type: String },
 	categories: [{ type: String }],
 	comments: [{ type: Schema.ObjectId, required: true }],
+	prev: {
+		name: { type: String, required: true },
+		link: { type: String, required: true }
+	},
+	prev: {
+		name: { type: String, required: true },
+		link: { type: String, required: true }
+	},
 }, {timestamps: true});
 
 export default mongoose.model('Post', PostSchema);
