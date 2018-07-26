@@ -38,7 +38,10 @@ class NewPost extends Component {
 			fetch(`/api/posts/${this.props.match.params.id}`)
 				.then(res => res.json())
 				.then(post => {
-					this.setState({post, err: false})
+					this.setState({
+						post: {...this.state.post, ...post},
+						err: false
+					})
 				})
 				.catch(err => {
 					this.setState({post: {}, err: true})
