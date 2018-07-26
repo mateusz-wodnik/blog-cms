@@ -29,10 +29,7 @@ class EditPost extends Component {
 			<main className="edit-post">
 				<Switch>
 					<Route exact path={`/edit-post`} render={() => <Categories categories={categories} posts={this.state.posts} />}/>
-					<Route path={`/edit-post/:id`} render={(props) => {
-						console.log(props)
-						return <NewPost id={props.match.params.id} categories={categories} />
-					}}/>
+					<Route path={`/edit-post/:id`} render={(props) => <NewPost {...props} categories={categories} />}/>
 				</Switch>
 			</main>
 		)

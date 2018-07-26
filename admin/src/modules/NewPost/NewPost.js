@@ -14,8 +14,8 @@ class NewPost extends Component {
 			post: {
 				title: "",
 				categories: [],
-				selected: false,
-				carousel: false,
+				featured: false,
+				slider: false,
 				img: "",
 				content: "",
 				comments: [],
@@ -34,10 +34,12 @@ class NewPost extends Component {
 
 	componentDidMount = () => {
 		if(this.props.post && this.props.post.title) this.setState({post: this.props.post})
-		if(this.props.id) {
-			fetch(`/api/posts/${this.props.id}`)
+		if(this.props.match.path === '/edit-post/:id') {
+			fetch(`/api/posts/${this.props.match.params.id}`)
 				.then(res => res.json())
-				.then(post => this.setState({post, err: false}))
+				.then(post => {
+					this.setState({post, err: false})
+				})
 				.catch(err => {
 					this.setState({post: {}, err: true})
 					console.log(err)
@@ -45,8 +47,16 @@ class NewPost extends Component {
 		}
 	}
 
+	componentDidUpdate = (prevProps, prevState) => {
+		// Load content into TinyMCE after plugin initialize
+		if(prevState.activeEditor !== this.state.activeEditor) {
+			this.state.activeEditor.setContent(this.state.post.content)
+		}
+	}
+
 	handlerPost = (e) => {
 		const { form, name, value, checked } = e.target
+		// Handle next and prev change
 		if(name === 'next' || name === 'prev') {
 			const output = {
 				name: form.elements[name][0].value,
@@ -55,6 +65,7 @@ class NewPost extends Component {
 			this.setState({ post: {...this.state.post, [name]: output} })
 			return
 		}
+		// Handle categories array change
 		if(name === 'categories') {
 			const categories = []
 			form.elements[name].forEach(cat => {
@@ -64,6 +75,7 @@ class NewPost extends Component {
 				post: { ...this.state.post, categories }
 			})
 		}
+		// Handle other properties change
 		this.setState({
 			post: {
 				...this.state.post,
@@ -79,15 +91,15 @@ class NewPost extends Component {
 	}
 
 	render() {
-		const { categories } = this.props
+		const { featured, slider, categories } = this.state.post
 		return (
 			<main className="new-post">
 				<section className="new-post__add">
 					<Form
-						categories={categories}
-						postCategories={this.state.post.categories}
-						selected={false}
-						carousel={false}
+						categories={this.props.categories}
+						postCategories={categories}
+						featured={featured}
+						slider={slider}
 						handler={this.handlerPost}
 					/>
 					<Editor
@@ -95,10 +107,10 @@ class NewPost extends Component {
 						plugins="image"
 						init={{
 							theme: `modern`,
-							height: '500px'
+							height: '500px',
+							init_instance_callback: editor => this.setState({activeEditor: editor}),
 						}}
 					/>
-					<button onClick={() => console.log(this.state.post)}>elo</button>
 				</section>
 				<section className="new-post__live">
 					<Header />
