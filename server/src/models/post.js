@@ -7,7 +7,7 @@ const PostSchema = new Schema({
 	featured: { type: Boolean, default: false },
 	slider: { type: Boolean, default: false },
 	img: { type: String },
-	category: { type: String },
+	categories: [{ type: String }],
 	comments: [{ type: Schema.ObjectId, required: true }],
 }, {timestamps: true});
 
