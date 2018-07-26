@@ -1,0 +1,18 @@
+@import "../../mixins.sass"
+
+.edit-post
+  +e(categories)
+    display: flex
+    flex-flow: row wrap
+    justify-content: space-around
+    align-content: space-evenly
+    width: 100%
+    height: 100%
+  +e(category)
+    width: 300px
+    background: rgba(var(--color-5), 0.5)
+  +e(posts)
+    border: 1px solid rgba(var(--color-3), 1)
+    min-height: 100px
+    background: rgba(var(--color-5), 1)
+  +e(post)

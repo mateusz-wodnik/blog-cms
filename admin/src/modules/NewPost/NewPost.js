@@ -32,6 +32,10 @@ class NewPost extends Component {
 		}
 	}
 
+	componentDidMount = () => {
+		if(this.props.post) this.setState({post: this.props.post})
+	}
+
 	handlerPost = (e) => {
 		const { form, name, value, checked } = e.target
 		if(name === 'next' || name === 'prev') {
@@ -66,10 +70,17 @@ class NewPost extends Component {
 	}
 
 	render() {
+		const { categories } = this.props
 		return (
 			<main className="new-post">
 				<section className="new-post__add">
-					<Form categories={categories} postCategories={postCategories} selected={false} carousel={false} handler={this.handlerPost}/>
+					<Form
+						categories={categories}
+						postCategories={this.state.post.categories}
+						selected={false}
+						carousel={false}
+						handler={this.handlerPost}
+					/>
 					<Editor
 						onEditorChange={this.handleEditorChange}
 						plugins="image"
@@ -92,17 +103,3 @@ class NewPost extends Component {
 }
 
 export default NewPost;
-
-
-// Fetch from blog.config.categories
-const categories = [
-	'cat1',
-	'cat2',
-	'cat3',
-	'cat4',
-	'cat5',
-	'cat6',
-]
-
-// Fetch from post.categories (for edit post purpose)
-const postCategories = []
