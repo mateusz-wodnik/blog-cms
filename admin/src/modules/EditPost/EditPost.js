@@ -1,6 +1,7 @@
 import React, { Component } from'react';
+import { Route, Switch } from'react-router-dom'
 import NewPost from '../NewPost/NewPost'
-import Category from './Category'
+import Categories from './Categories'
 
 import './EditPost.css'
 
@@ -22,32 +23,17 @@ class EditPost extends Component {
 			.catch(err => console.log(err))
 	}
 
-	handlePostSelect(id) {
-		// Fetch post
-		fetch(`/api/posts/${id}`)
-			.then(res => res.json())
-			.then(post => this.setState({post, err: false}))
-			.catch(err => {
-				this.setState({post: {}, err: true})
-				console.log(err)
-			})
-	}
-
 	render() {
 		const { categories } = this.props
 		return(
 			<main className="edit-post">
-				<section className="edit-post__categories">
-					{categories.map((cat, idx) =>
-						<Category
-							key={cat+idx}
-							name={cat}
-							posts={this.state.posts.filter(post =>
-								// Check if post.category is defined
-								post.category && post.category.includes(cat)
-							)}
-						/>)}
-				</section>
+				<Switch>
+					<Route exact path={`/edit-post`} render={() => <Categories categories={categories} posts={this.state.posts} />}/>
+					<Route path={`/edit-post/:id`} render={(props) => {
+						console.log(props)
+						return <NewPost id={props.match.params.id} categories={categories} />
+					}}/>
+				</Switch>
 			</main>
 		)
 	}

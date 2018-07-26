@@ -33,7 +33,16 @@ class NewPost extends Component {
 	}
 
 	componentDidMount = () => {
-		if(this.props.post) this.setState({post: this.props.post})
+		if(this.props.post && this.props.post.title) this.setState({post: this.props.post})
+		if(this.props.id) {
+			fetch(`/api/posts/${this.props.id}`)
+				.then(res => res.json())
+				.then(post => this.setState({post, err: false}))
+				.catch(err => {
+					this.setState({post: {}, err: true})
+					console.log(err)
+				})
+		}
 	}
 
 	handlerPost = (e) => {
