@@ -43,10 +43,11 @@ class NewPost extends Component {
 						post: {...this.state.post, ...post},
 						err: false
 					})
+					document.querySelector('#headerImage').style.backgroundImage = `url(${post.img})`;
 				})
 				.catch(err => {
 					this.setState({post: {}, err: true})
-					console.log(err)
+					console.log(err);
 				})
 		}
 	}
@@ -77,9 +78,11 @@ class NewPost extends Component {
 				method: 'POST',
 				body: img
 			}).then(res => res.json())
-				.then(img => this.setState({post: {img}}))
+				.then(img => {
+					this.setState({post: {...this.state.post, img}})
+					document.querySelector('#headerImage').style.backgroundImage = `url(${img})`;
+				})
 				.catch(err => console.log(err))
-
 		}
 		// Handle categories array change
 		if(name === 'categories') {
@@ -119,6 +122,7 @@ class NewPost extends Component {
 	}
 
 	render() {
+		console.log(this.state.post.img)
 		const { featured, slider, categories, title } = this.state.post
 		return (
 			<main className="new-post">

@@ -57,5 +57,5 @@ export function getPost(req, res) {
 
 export function uploadPostImage(req, res) {
 	console.log('POST upload image')
-	res.json(`http://localhost:3000/images/${req.params.id}`)
+	res.json(`http://localhost:3000/images/${req.params.id}/${req.file.originalname}`)
 }
