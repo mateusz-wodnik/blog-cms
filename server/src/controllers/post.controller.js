@@ -54,3 +54,8 @@ export function getPost(req, res) {
 		.then(post => res.send(post))
 		.catch(err => res.send(err))
 }
+
+export function uploadPostImage(req, res) {
+	console.log('POST upload image')
+
+}
