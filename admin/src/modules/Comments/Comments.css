@@ -8,7 +8,6 @@
     justify-content: space-around;
     align-items: flex-start; }
   .admin .comments__comment {
-    width: 30%;
     min-width: 200px;
     display: flex;
     flex-flow: column;
@@ -16,8 +15,6 @@
     margin: 20px 0; }
     .admin .comments__comment--new {
       background: rgba(var(--color-5), 0.7); }
-    .admin .comments__comment:focus {
-      background: gold !important; }
   .admin .comments__date {
     display: flex;
     flex-flow: row wrap;

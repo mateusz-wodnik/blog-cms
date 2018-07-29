@@ -43,6 +43,13 @@ class App extends Component {
 			.catch(console.error)
 	}
 
+	handleResponse = (response) => {
+		const comments = this.state.comments.map(comment => {
+
+		})
+		this.setState({})
+	}
+
   render() {
 		const { categories, comments, lastAccess, admin } = this.state
     return (

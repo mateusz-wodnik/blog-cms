@@ -9,16 +9,21 @@ class Comments extends Component {
 		this.props.handleComments()
 	}
 
-	handleResponse = (e, id) => {
+	handleResponse = (e) => {
 		e.preventDefault();
-		console.log(e.target)
+		const id = e.target.dataset.id
+		console.log(id)
 		const body = {
-			content: e.target.form.response.value,
+			content: e.target.response.value,
 			username: this.props.admin.name,
 			avatar: this.props.admin.avatar
 		}
-		fetch(`/api/comments/${id}`, {
+		fetch(`/api/comments/${id}?response=true`, {
 			method: 'POST',
+			headers: {
+				'Accept': 'application/json',
+				'Content-Type': 'application/json'
+			},
 			body: JSON.stringify(body)
 		}).then(res => res.json())
 			.then(res => console.log(res))
@@ -34,6 +39,9 @@ class Comments extends Component {
 						<Comment
 							key={comment._id}
 							comment={comment}
+							handleResponse={this.handleResponse}
+							username={this.props.admin.name}
+							avatar={this.props.admin.avatar}
 							isNew={lastAccess < new Date(comment.updatedAt)}
 						/>
 					)}

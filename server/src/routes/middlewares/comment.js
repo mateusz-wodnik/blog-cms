@@ -3,15 +3,12 @@ import mkdirp from 'mkdirp-promise'
 
 const storage = multer.diskStorage({
 	destination: function (req, file, cb) {
-		console.log({file})
 		mkdirp(`public/images/comments/`)
 			.then(res => cb(null, `public/images/comments/`))
 			.catch(console.error)
 	},
 	filename: function (req, file, cb) {
 		const avatar = `${Date.now()}-${file.originalname}`
-		console.log(req.body)
-		console.log(file)
 		req.body.avatar = `/images/comments/${avatar}`
 		cb(null, avatar)
 	}

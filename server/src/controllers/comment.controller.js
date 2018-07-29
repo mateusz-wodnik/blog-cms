@@ -5,6 +5,7 @@ import Post from '../models/post'
 export function getComments(req, res) {
 	console.log('Received GET request')
 	Comment.find()
+		.populate('response')
 		.then(comments => res.send(comments))
 		.catch(err => res.send(err))
 }
@@ -18,9 +19,16 @@ export function addComment(req, res) {
 		const comments = {username, content, avatar}
 		Comment.create(comments)
 			.then(comment => {
-				Post.update({_id: req.params.id}, {$addToSet: {comments: comment}})
-					.then(res => console.log(res))
-					.catch(err => console.log(err))
+				if(req.query.response === 'true') {
+					Comment.update({_id: req.params.id}, {$addToSet: {response: comment}})
+						.then(res => console.log(res))
+						.catch(err => console.log(err))
+				} else {
+					Post.update({_id: req.params.id}, {$addToSet: {comments: comment}})
+						.then(res => console.log(res))
+						.catch(err => console.log(err))
+				}
+
 				res.send(comment)
 			})
 			.catch(err => res.send(err))
