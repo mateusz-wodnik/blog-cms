@@ -12,7 +12,9 @@ app.use(bodyParser.json());
 
 // Router
 import post from './routes/post.routes'
+import comment from './routes/comment.routes'
 app.use('/api/posts', post);
+app.use('/api/comments', comment);
 
 // Database config
 import './mongoConfig.js'

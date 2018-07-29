@@ -25,6 +25,7 @@ class Post extends Component {
 			},
 		}
 	}
+
 	componentDidMount() {
 		fetch(`/api/posts/${this.props.match.params.post}`)
 			.then(res => res.json())
@@ -39,6 +40,36 @@ class Post extends Component {
 					img
 				})
 			})
+	}
+
+	handleAddComment = (e) => {
+		e.preventDefault()
+		const {files, username, content, name, form} = e.target
+		const id = this.props.match.params.post
+		if(name === 'image') {
+			const img = new FormData()
+			img.append('image', files[0])
+			return fetch(`/api/comments/${id}`, {
+				method: 'POST',
+				body: img
+			}).then(res => res.json())
+				.then(img => {
+					this.setState({post: {...this.state.post, img}})
+					document.querySelector('#headerImage').style.backgroundImage = `url(${img})`;
+				})
+				.catch(err => console.log(err))
+		}
+		const body = {username: username.value, content: content.value}
+		fetch(`/api/comments/${id}`, {
+			headers: {
+				'Accept': 'application/json',
+				'Content-Type': 'application/json'
+			},
+			method: 'POST',
+			body: JSON.stringify(body)
+		}).then(res => res.json())
+			.then(comment => this.setState({comments: [...this.state.comments, comment]}))
+			.catch(err => console.log(err))
 	}
 
 	render() {
@@ -70,7 +101,7 @@ class Post extends Component {
 						<Link to={prev.link} className="post__prev">{prev.name}</Link>
 						<Link to={next.link} className="post__next">{next.name}</Link>
 					</div>
-					<Comments comments={comments}/>
+					<Comments comments={comments} handleAddComment={this.handleAddComment}/>
 				</footer>
 			</section>
 		)

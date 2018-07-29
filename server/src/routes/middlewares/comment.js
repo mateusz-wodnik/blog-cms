@@ -3,9 +3,10 @@ import mkdirp from 'mkdirp'
 
 const storage = multer.diskStorage({
 	destination: function (req, file, cb) {
-		mkdirp(`public/images/${req.params.id}`, function (err) {
+		console.log(req.body)
+		mkdirp(`public/images/comments/${req.files['avatar'][0]}`, function (err) {
 			if (err) console.error(err)
-			cb(null, `public/images/${req.params.id}`)
+			cb(null, `public/images/comments/${req.body.username}`)
 		});
 	},
 	filename: function (req, file, cb) {
@@ -13,6 +14,6 @@ const storage = multer.diskStorage({
 	}
 })
 
-const uploadImage = multer({ storage: storage })
+const uploadCommentImage = multer({ storage: storage })
 
-export default uploadImage
+export default uploadCommentImage
