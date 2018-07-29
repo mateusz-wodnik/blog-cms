@@ -56,6 +56,7 @@ export function deletePost(req, res) {
 export function getPost(req, res) {
 	console.log(`Received GET for single example`)
 	Post.findById(req.params.id)
+		.populate('comments')
 		.then(post => res.send(post))
 		.catch(err => res.send(err))
 }

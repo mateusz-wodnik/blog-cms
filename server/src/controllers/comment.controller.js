@@ -15,7 +15,9 @@ export function addComment(req, res) {
 		// validationResult(req).throw()
 		Comment.create({...req.body})
 			.then(comment => {
-				console.log(comment)
+				Post.update({_id: req.params.id}, {$addToSet: {comments: comment}})
+					.then(res => console.log(res))
+					.catch(err => console.log(err))
 				res.send(comment)
 			})
 			.catch(err => res.send(err.mapped()))

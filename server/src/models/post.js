@@ -8,7 +8,7 @@ const PostSchema = new Schema({
 	slider: { type: Boolean, default: false },
 	img: { type: String },
 	categories: [{ type: String }],
-	comments: [{ type: Schema.ObjectId, required: true }],
+	comments: [{ type: Schema.ObjectId, required: true, ref: 'Comment' }],
 	prev: {
 		name: { type: String, required: true },
 		link: { type: String, required: true }
