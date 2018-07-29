@@ -11,19 +11,23 @@ class App extends Component {
 	constructor () {
 		super()
 		this.state = {
-			config: {
-				categories: []
-			}
+			categories: []
 		}
 	}
 
 	componentDidMount = () => {
-		// Fetch config
-		this.setState({config})
+		fetch('/api/posts?categories=true')
+			.then(res => res.json())
+			.then(res => {
+				const categories = []
+				res.forEach(cat => categories.push(...cat.categories))
+				this.setState({categories: [...new Set(categories)]})
+			})
+			.catch(err => console.log(err))
 	}
 
   render() {
-		const { categories } = this.state.config
+		const { categories } = this.state
     return (
       <div className="admin">
 				<Route path={`/`} component={Sidebar} />
@@ -35,15 +39,3 @@ class App extends Component {
 }
 
 export default hot(module)(App);
-
-
-const config = {
-	categories: [
-		'cat1',
-		'cat2',
-		'cat3',
-		'cat4',
-		'cat5',
-		'cat6',
-	]
-}
