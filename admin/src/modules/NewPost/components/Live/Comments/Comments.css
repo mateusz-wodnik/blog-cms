@@ -1,27 +1,27 @@
-.comments {
+.blog .comments {
   width: 90%;
   margin: auto;
   display: flex;
   flex-flow: column; }
-  .comments__add {
+  .blog .comments__add {
     display: flex; }
-  .comments__img {
+  .blog .comments__img {
     width: 60px; }
-  .comments__form {
+  .blog .comments__form {
     display: flex;
     flex-flow: column;
     justify-content: space-between;
     width: 50%;
     margin-left: 20px; }
-  .comments__name, .comments__text {
+  .blog .comments__name, .blog .comments__text {
     background: transparent;
     border: 2px solid var(--bg-pink);
     color: var(--font-main); }
-  .comments__submit {
+  .blog .comments__submit {
     padding: 0 5px;
     margin-left: 5px;
     border: 2px solid var(--bg-pink); }
-  .comments__content {
+  .blog .comments__content {
     margin-top: 20px; }
 
 .comment {
