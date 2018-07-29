@@ -16,12 +16,12 @@ class Post extends Component {
 			content: '',
 			img: '',
 			next: {
-				link: 'met-gala',
-				name: 'Jak religia inspituje modę? - MET Gala'
+				link: '',
+				name: ''
 			},
 			prev: {
-				link: '/torebka-koszyk',
-				name: 'Torebka koszyk - letni must-have!'
+				link: '',
+				name: ''
 			},
 		}
 	}
@@ -30,14 +30,16 @@ class Post extends Component {
 		fetch(`/api/posts/${this.props.match.params.post}`)
 			.then(res => res.json())
 			.then(res => {
-				const {title, date, comments, content, img} = res
+				const {title, date, comments, content, img, next, prev} = res
 				document.querySelector('#headerImage').style.backgroundImage = `url(/images/${img})`
 				this.setState({
 					title,
 					date,
 					comments,
 					content,
-					img
+					img,
+					next,
+					prev
 				})
 			})
 	}
@@ -46,34 +48,36 @@ class Post extends Component {
 		e.preventDefault()
 		const {files, username, content, name, form} = e.target
 		const id = this.props.match.params.post
-		if(name === 'image') {
-			const img = new FormData()
-			img.append('image', files[0])
-			return fetch(`/api/comments/${id}`, {
-				method: 'POST',
-				body: img
-			}).then(res => res.json())
-				.then(img => {
-					this.setState({post: {...this.state.post, img}})
-					document.querySelector('#headerImage').style.backgroundImage = `url(${img})`;
-				})
-				.catch(err => console.log(err))
-		}
-		const body = {username: username.value, content: content.value}
+		localStorage.setItem('username', username.value)
+		const body = new FormData()
+		console.log(typeof this.state.img)
+		// if localstorage is undefined or state.img was set to File object set File object,if not set link from localstorage
+		body.append('avatar', localStorage.getItem('avatar') === 'undefined' || typeof this.state.img === 'object' ? this.state.img : localStorage.getItem('avatar'))
+		body.append('username', username.value)
+		body.append('content', content.value)
 		fetch(`/api/comments/${id}`, {
-			headers: {
-				'Accept': 'application/json',
-				'Content-Type': 'application/json'
-			},
 			method: 'POST',
-			body: JSON.stringify(body)
+			body: body
 		}).then(res => res.json())
-			.then(comment => this.setState({comments: [...this.state.comments, comment]}))
-			.catch(err => console.log(err))
+			.then(comment => {
+				console.log(comment)
+				localStorage.setItem('avatar', comment.avatar)
+				this.setState({comments: [...this.state.comments, comment]})
+			})
+			.catch(console.error)
+	}
+
+	handleCommentImage = (e) => {
+		console.log(e.target)
+		const files = e.target.files
+		this.setState({img: files[0]})
+		const fReader = new FileReader()
+		fReader.onload = () => document.querySelector('#newCommentImg').style.backgroundImage = `url(${fReader.result})`;
+		fReader.readAsDataURL(files[0])
 	}
 
 	render() {
-		const {title, date, comments, content, next, prev, img} = this.state
+		const { title, date, comments, content, next, prev } = this.state
 		return(
 			<section className="blog__post post">
 				<header id="headerImage" className="post__header">
@@ -101,7 +105,15 @@ class Post extends Component {
 						<Link to={prev.link} className="post__prev">{prev.name}</Link>
 						<Link to={next.link} className="post__next">{next.name}</Link>
 					</div>
-					<Comments comments={comments} handleAddComment={this.handleAddComment}/>
+					<Comments
+						comments={comments}
+						handleCommentImage={this.handleCommentImage}
+						handleAddComment={this.handleAddComment}
+						user={{
+							name: localStorage.getItem('username'),
+							avatar: localStorage.getItem('avatar')
+						}}
+					/>
 				</footer>
 			</section>
 		)
@@ -109,92 +121,3 @@ class Post extends Component {
 }
 
 export default Post;
-
-const data = {
-	"title": "Lody jagodowe",
-	"date" : "7.05.2018",
-	"comments": [
-		{
-			date: new Date(1234124142877),
-			name: "Małgosia",
-			text: "Lorem ipsum dolor sit amet, consectetur adipisicing elit. Accusantium aperiam dolorum magnam maxime minima nesciunt nisi quos reiciendis vel voluptatem!",
-			response: [
-				{
-					name: "Gosia",
-					text: "Dziękuję bardzo",
-					date: new Date(1234234356334)
-				}
-			]
-		},
-		{
-			date: new Date(1434124142877),
-			name: "Nati",
-			text: "Lorem ipsum dolor sit amet, consectetur adipisicing elit. Accusantium aperiam dolorum magnam maxime minima nesciunt nisi quos reiciendis vel voluptatem!",
-			response: [
-				{
-					name: "Gosia",
-					text: "Dziękuję bardzo",
-					date: new Date(1234234356334)
-				}
-			]
-		},
-		{
-			date: new Date(1334124142877),
-			name: "Mati",
-			text: "Lorem ipsum dolor sit amet, consectetur adipisicing elit. Accusantium aperiam dolorum magnam maxime minima nesciunt nisi quos reiciendis vel voluptatem!",
-			response: [
-				{
-					name: "Gosia",
-					text: "Dziękuję bardzo",
-					date: new Date(1234234356334)
-				}
-			]
-		},
-		{
-			date: new Date(1434124142877),
-			name: "Pati",
-			text: "Lorem ipsum dolor sit amet, consectetur adipisicing elit. Accusantium aperiam dolorum magnam maxime minima nesciunt nisi quos reiciendis vel voluptatem!",
-			response: [
-				{
-					name: "Gosia",
-					text: "Dziękuję bardzo",
-					date: new Date(1234234356334)
-				}
-			]
-		}
-	],
-	content:
-		<div>
-			<p>W poście o trendach wiosna/lato 2018 już w pierwszym akapicie pisałam o sorbetowym zawrocie głowy, który funduje Nam moda w tym sezonie. Na wybiegach królują pastele! Tym razem to nie pudrowy róż czy mięta grają pierwsze skrzypce, ale jasny żółty oraz…rozbielony fiolet.</p>
-			<p>Jak dokładnie wygląda ten kolor? Zamknijcie oczy i wyobraźcie sobie pole lawendy…albo jagodowe lody…albo kwiaty bzu…!</p>
-			<img src='/images/post-1.content-1.jpg'/>
-			<p>Pytacie z czym jeść takie jagodowe lody? Wszystkie pastele dobrze czują się w swoim towarzystwie. Połączenie pudrowego różu, baby blue i jasnego fioletu – nigdy Was nie zawiedzie. Taka kombinacja będzie świetna na letnie uroczystości, takie jak komunie czy wesela, i doskonale sprawdzi się na randce 😀 Doda Wam delikatności i świeżości – dziewczęcego uroku.</p>
-			<img src='/images/post-1.content-2.png'/>
-			<p>Co jeżeli nie chcesz być rusałką, a wolisz wyglądać jak „lawendowa kobieta sukcesu”? Połącz naszą jagodę z brązem, szarościami, kremowym, a nawet UWAGA bordowym i krwistą czerwienią!</p>
-			<img src='/images/post-1.content-3.png'/>
-			<h2>MOJA PROPOZYCJA</h2>
-			<p>Ci którzy dobrze mnie znają wiedzą, że nie mam nic wspólnego ze sportowym stylem, ale tym razem chciałam zrobić wyjątek. Modne w tym sezonie spodnie paperbag, w kolorze lawendowym, połączyłam z pasującymi do nich butami – tworząc total look. Na górę wybrałam krótką, pudrową, jeansową kurtkę. </p>
-			<h2>NA ZDJĘCIACH MAM NA SOBIE</h2>
-			<ol>
-				<li><a href="http://www.hm.pl">Kurtka jeansowa = H&M</a></li>
-				<li><a href="http://www.hm.pl">Spodnie - MANGO</a></li>
-				<li><a href="http://www.hm.pl">Buty - Reebok x Local Heroes</a></li>
-			</ol>
-			<img src='/images/post-1.content-4.jpg'/>
-			<img src='/images/post-1.content-5.jpg'/>
-			<img src='/images/post-1.content-6.jpg'/>
-			<img src='/images/post-1.content-7.jpg'/>
-			<img src='/images/post-1.content-8.jpg'/>
-			<img src='/images/post-1.content-9.jpg'/>
-			<img src='/images/post-1.content-10.jpg'/>
-			<img src='/images/post-1.content-11.jpg'/>
-			<img src='/images/post-1.content-12.jpg'/>
-			<img src='/images/post-1.content-13.jpg'/>
-			<img src='/images/post-1.content-14.jpg'/>
-			<img src='/images/post-1.content-15.jpg'/>
-			<img src='/images/post-1.content-16.jpg'/>
-			<img src='/images/post-1.content-17.jpg'/>
-			<h2>ZAINSPIRUJ SIĘ</h2>
-			<img src='/images/post-1.content-18.png'/>
-		</div>
-}

@@ -1,16 +1,19 @@
 import multer from 'multer'
-import mkdirp from 'mkdirp'
+import mkdirp from 'mkdirp-promise'
 
 const storage = multer.diskStorage({
 	destination: function (req, file, cb) {
-		console.log(req.body)
-		mkdirp(`public/images/comments/${req.files['avatar'][0]}`, function (err) {
-			if (err) console.error(err)
-			cb(null, `public/images/comments/${req.body.username}`)
-		});
+		console.log({file})
+		mkdirp(`public/images/comments/`)
+			.then(res => cb(null, `public/images/comments/`))
+			.catch(console.error)
 	},
 	filename: function (req, file, cb) {
-		cb(null, file.originalname)
+		const avatar = `${Date.now()}-${file.originalname}`
+		console.log(req.body)
+		console.log(file)
+		req.body.avatar = `/images/comments/${avatar}`
+		cb(null, avatar)
 	}
 })
 

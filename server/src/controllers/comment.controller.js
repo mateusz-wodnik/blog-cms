@@ -11,16 +11,19 @@ export function getComments(req, res) {
 
 export function addComment(req, res) {
 	console.log('POST add comment')
+	console.log(req.body)
 	try {
 		// validationResult(req).throw()
-		Comment.create({...req.body})
+		const { username, content, avatar } = req.body
+		const comments = {username, content, avatar}
+		Comment.create(comments)
 			.then(comment => {
 				Post.update({_id: req.params.id}, {$addToSet: {comments: comment}})
 					.then(res => console.log(res))
 					.catch(err => console.log(err))
 				res.send(comment)
 			})
-			.catch(err => res.send(err.mapped()))
+			.catch(err => res.send(err))
 	} catch (err) {
 		res.send(err)
 	}
