@@ -28,7 +28,8 @@ class NewPost extends Component {
 					link: '',
 					name: ''
 				},
-			}
+			},
+			img: []
 		}
 	}
 
@@ -58,15 +59,27 @@ class NewPost extends Component {
 	}
 
 	handlerPost = (e) => {
-		const { form, name, value, checked } = e.target
+		const { form, name, value, checked, files } = e.target
 		// Handle next and prev change
 		if(name === 'next' || name === 'prev') {
 			const output = {
 				name: form.elements[name][0].value,
 				link: form.elements[name][1].value
 			}
-			this.setState({ post: {...this.state.post, [name]: output} })
-			return
+			return this.setState({ post: {...this.state.post, [name]: output} })
+		}
+
+		if(name === 'img') {
+			const id = this.state.post._id || 'temporary'
+			const img = new FormData()
+			img.append('image', files[0])
+			return fetch(`/api/posts/${id}`, {
+				method: 'POST',
+				body: img
+			}).then(res => res.json())
+				.then(img => this.setState({post: {img}}))
+				.catch(err => console.log(err))
+
 		}
 		// Handle categories array change
 		if(name === 'categories') {
@@ -124,6 +137,19 @@ class NewPost extends Component {
 						init={{
 							theme: `modern`,
 							height: '500px',
+							// images_upload_url: "/api/images",
+							images_upload_handler: (blobInfo, success, failure) => {
+								const id = this.state.post._id || 'temporary'
+								const img = new FormData()
+								img.append('image', blobInfo.blob(), blobInfo.filename())
+								console.log(img.get('image'))
+								fetch(`/api/posts/${id}`, {
+									method: 'POST',
+									body: img
+								}).then(res => res.json())
+									.then(res => success(res))
+									.catch(err => failure(err))
+							},
 							init_instance_callback: editor => this.setState({activeEditor: editor}),
 						}}
 					/>
