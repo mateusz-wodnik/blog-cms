@@ -32,7 +32,7 @@ class Slider extends Component {
 								<h3 className="slider__title">{slide.title}</h3>
 								<button className="slider__btn">Więcej...</button>
 							</div>
-							<img src={`/images/${slide.img}`} alt="slider" className="slider__img"/>
+							<img src={`${slide.img}`} alt="slider" className="slider__img"/>
 						</div>
 					))}
 				</Carousel>
