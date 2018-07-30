@@ -5,7 +5,6 @@ import Post from '../models/post'
 export function getComments(req, res) {
 	console.log('Received GET request')
 	Comment.find()
-		.populate('response')
 		.then(comments => res.send(comments))
 		.catch(err => res.send(err))
 }
