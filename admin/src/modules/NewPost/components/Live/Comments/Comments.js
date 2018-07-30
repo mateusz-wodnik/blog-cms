@@ -5,41 +5,58 @@ import placeholder from './placeholder.jpeg'
 
 class Comments extends Component {
 	render() {
-		const {comments} = this.props
+		const { comments, handleAddComment, handleCommentImage, user={} } = this.props
 		return(
 			<section className="blog__comments comments">
 				<header className="comments__header">
 					<p className="comments__number">{comments.length} Komentarze</p>
 				</header>
 				<div className="comments__add">
-					<img className="comments__img" src={placeholder} alt=""/>
-					<form className="comments__form">
-						<input className="comments__name" type="text" name="name" placeholder="Nazwa"/>
-						<textarea className="comments__text" type="text" name="text" placeholder="Twój komentarz"/>
+					<form onSubmit={handleAddComment} className="comments__form">
+						<div id="newCommentImg" className="comments__img" style={{backgroundImage: `url(${user.avatar})`}}>
+							<input onChange={handleCommentImage} type='file' name="image" className="comments__file" />
+						</div>
+						<div className="comments__text">
+							<input required={true} className="comments__name" type="text" name="username" placeholder="Nazwa" defaultValue={user.name}/>
+							<textarea required={true} className="comments__content" type="text" name="content" placeholder="Twój komentarz"/>
+						</div>
+						<button className="comments__submit">Wyślij</button>
 					</form>
-					<button className="comments__submit">Wyślij</button>
 				</div>
-				<div className="comments__content">
-					{comments.map((comment, idx) => <Comment key={idx} date={comment.date} text={comment.text} name={comment.name} img={comment.img} response={comment.response}/>)}
+				<div className="comments__list">
+					{comments.map((comment, idx) => (
+						<Comment
+							key={idx}
+							comment={comment}
+						/>
+					))}
 				</div>
 			</section>
 		)
 	}
 }
 
-const Comment = ({text, name, img, date, response=[]}) => (
-	<div className="comments__comment comment">
-		<header className="comment__header">
-			<img className="comment__img" src={img || placeholder} alt=""/>
-		</header>
-		<div className="comment__content">
-			<h5 className="comment__name">{name}<small className="comment__date">{date.toLocaleDateString()}</small></h5>
-			<p className="comment__text">{text}</p>
-			<div className="comment__response">
-				{response.map((res, idx) => <Comment key={idx} text={res.text} name={res.name} img={res.img} date={res.date} response={res.response}/>)}
+const Comment = ({comment}) => {
+	const { content, username, avatar, createdAt, response=[] } = comment
+	return(
+		<div className="comments__comment comment">
+			<header className="comment__header">
+				<img className="comment__img" src={avatar || placeholder} alt=""/>
+			</header>
+			<div className="comment__content">
+				<h5 className="comment__name">{username}<small className="comment__date">{new Date(createdAt).toLocaleDateString()}</small></h5>
+				<p className="comment__text">{content}</p>
+				<div className="comment__response">
+					{response.map((comment, idx) => (
+						<Comment
+							key={idx}
+							comment={comment}
+						/>
+					))}
+				</div>
 			</div>
 		</div>
-	</div>
-)
+	)
+}
 
 export default Comments

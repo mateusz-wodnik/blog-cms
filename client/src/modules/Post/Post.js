@@ -31,7 +31,7 @@ class Post extends Component {
 			.then(res => res.json())
 			.then(res => {
 				const {title, date, comments, content, img, next, prev} = res
-				document.querySelector('#headerImage').style.backgroundImage = `url(/images/${img})`
+				document.querySelector('#headerImage').style.backgroundImage = `url(${img})`
 				this.setState({
 					title,
 					date,

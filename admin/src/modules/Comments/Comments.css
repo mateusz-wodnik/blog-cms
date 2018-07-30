@@ -1,32 +1,32 @@
-.admin .comments {
+.admin__comments .comments {
   overflow: auto;
   height: 100vh;
   width: 100%; }
-  .admin .comments__list {
+  .admin__comments .comments__list {
     display: flex;
     flex-flow: row wrap;
     justify-content: space-around;
     align-items: flex-start; }
-  .admin .comments__comment {
+  .admin__comments .comments__comment {
     min-width: 200px;
     display: flex;
     flex-flow: column;
     justify-content: stretch;
     margin: 20px 0; }
-    .admin .comments__comment--new {
+    .admin__comments .comments__comment--new {
       background: rgba(var(--color-5), 0.7); }
-  .admin .comments__date {
+  .admin__comments .comments__date {
     display: flex;
     flex-flow: row wrap;
     justify-content: space-between; }
-  .admin .comments__content {
+  .admin__comments .comments__content {
     margin: 0; }
-  .admin .comments__show-response {
+  .admin__comments .comments__show-response {
     display: flex;
     justify-content: space-between; }
-  .admin .comments__response:hover .comments__form {
+  .admin__comments .comments__response:hover .comments__form {
     height: 80px; }
-  .admin .comments__form {
+  .admin__comments .comments__form {
     display: flex;
     flex-flow: row;
     width: 100%;
