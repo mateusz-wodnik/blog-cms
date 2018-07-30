@@ -6,7 +6,6 @@ import placeholder from './placeholder.jpeg'
 class Comments extends Component {
 	render() {
 		const { comments, handleAddComment, handleCommentImage, user={} } = this.props
-		console.log(user)
 		return(
 			<section className="blog__comments comments">
 				<header className="comments__header">
@@ -25,26 +24,40 @@ class Comments extends Component {
 					</form>
 				</div>
 				<div className="comments__list">
-					{comments.map((comment, idx) => <Comment key={idx} date={new Date(comment.createdAt)} content={comment.content} username={comment.username} avatar={comment.avatar} response={comment.response}/>)}
+					{comments.map((comment, idx) => (
+						<Comment
+							key={idx}
+							comment={comment}
+						/>
+					))}
 				</div>
 			</section>
 		)
 	}
 }
 
-const Comment = ({content, username, avatar, date, response=[]}) => (
-	<div className="comments__comment comment">
-		<header className="comment__header">
-			<img className="comment__img" src={avatar || placeholder} alt=""/>
-		</header>
-		<div className="comment__content">
-			<h5 className="comment__name">{username}<small className="comment__date">{date.toLocaleDateString()}</small></h5>
-			<p className="comment__text">{content}</p>
-			<div className="comment__response">
-				{response.map((res, idx) => <Comment key={idx} text={res.text} name={res.name} img={res.img} date={res.date} response={res.response}/>)}
+const Comment = ({comment}) => {
+	const { content, username, avatar, createdAt, response=[] } = comment
+	return(
+		<div className="comments__comment comment">
+			<header className="comment__header">
+				<img className="comment__img" src={avatar || placeholder} alt=""/>
+			</header>
+			<div className="comment__content">
+				<h5 className="comment__name">{username}<small className="comment__date">{new Date(createdAt).toLocaleDateString()}</small></h5>
+				<p className="comment__text">{content}</p>
+				<div className="comment__response">
+					{response.map((comment, idx) => (
+						<Comment
+							key={idx}
+							comment={comment}
+						/>
+					))}
+				</div>
 			</div>
 		</div>
-	</div>
-)
+	)
+}
+
 
 export default Comments
