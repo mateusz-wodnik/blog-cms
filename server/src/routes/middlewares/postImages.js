@@ -3,9 +3,9 @@ import mkdirp from 'mkdirp'
 
 const storage = multer.diskStorage({
 	destination: function (req, file, cb) {
-		mkdirp(`public/images/${req.params.id}`, function (err) {
+		mkdirp(`public/images`, function (err) {
 			if (err) console.error(err)
-			cb(null, `public/images/${req.params.id}`)
+			cb(null, `public/images`)
 		});
 	},
 	filename: function (req, file, cb) {

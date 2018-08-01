@@ -4,6 +4,7 @@ import NewPost from '../NewPost/NewPost'
 import Categories from './Categories'
 
 import './EditPost.css'
+import NewPostContainer from '../NewPost/NewPostContainer'
 
 class EditPost extends Component {
 	constructor (props) {
@@ -29,7 +30,7 @@ class EditPost extends Component {
 			<main className="edit-post">
 				<Switch>
 					<Route exact path={`/edit-post`} render={() => <Categories categories={categories} posts={this.state.posts} />}/>
-					<Route path={`/edit-post/:id`} render={(props) => <NewPost {...props} categories={categories} />}/>
+					<Route path={`/edit-post/:id`} render={(props) => <NewPostContainer {...props} categories={categories} />}/>
 				</Switch>
 			</main>
 		)

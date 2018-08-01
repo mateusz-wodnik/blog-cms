@@ -8,4 +8,5 @@
   .admin aside {
     grid-area: sidebar; }
   .admin main {
-    grid-area: main; }
+    grid-area: main;
+    overflow: auto; }

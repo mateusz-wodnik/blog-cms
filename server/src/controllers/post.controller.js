@@ -23,30 +23,38 @@ export function getPosts(req, res) {
 export function addPost(req, res) {
 	console.log(`Received POST`)
 	try {
-		validationResult(req).throw()
-		console.log(req.body)
-		Post.create({...req.body})
+		// validationResult(req).throw()
+		const post = JSON.parse(req.body.post)
+		post.img = `/images/${req.file.filename}`
+		console.log(post)
+		Post.create(post)
 			.then(post => {
-				console.log(post)
 				res.send(post)
 			})
-			.catch(err => res.send(err.mapped()))
+			.catch(err => res.send(err))
 	} catch (err) {
-		res.send(err.mapped())
+		res.send(err)
 	}
 }
 
 export function updatePost(req, res) {
 	try {
-		validationResult(req).throw()
+		// validationResult(req).throw()
+		// console.log(req.body)
+		const post = JSON.parse(req.body.post)
+		// console.log(post)
+		post.img = `/images/${req.file.filename}`
+		delete post.createdAt
+		delete post.updatedAt
 		Post.update(
 			{_id: req.params.id},
-			req.body
+			post
 		)
 			.then(post => res.send(post))
 			.catch(err => res.send(err))
 	} catch (err) {
-		res.send(err.mapped())
+		console.log(err)
+		res.send(err)
 	}
 }
 
@@ -67,5 +75,5 @@ export function getPost(req, res) {
 
 export function uploadPostImage(req, res) {
 	console.log('POST upload image')
-	res.json(`/images/${req.params.id}/${req.file.originalname}`)
+	res.json(`/images/${req.file.originalname}`)
 }

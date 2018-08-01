@@ -20,3 +20,12 @@
     overflow: auto
     flex: 1
     transition: 1s
+
+@media (max-width: 768px)
+  .new-post
+    flex-flow: column
+    +e(edit)
+      overflow: initial
+      margin-bottom: 30px
+    +e(live)
+      overflow: initial

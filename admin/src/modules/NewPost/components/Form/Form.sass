@@ -1,14 +1,43 @@
 @import "../../../../mixins.sass"
 
 .new-post__form
+  background-color: rgba(var(--color-white), 0.8)
+  display: grid
+  grid-template-rows: auto auto auto auto
+  grid-template-columns: 50% 50%
+  grid-template-areas: "top top" "left right-0" "left right-1" "bottom bottom"
+  justify-items: stretch
   .form-group
-    margin: 10px auto
-    padding: 5px
-    width: 30%
-    background: rgba(var(--color-white), 0.8)
+    margin: 10px
+    padding: 10px
+    background-color: rgba(var(--color-white), 0.8)
 
 .form
-  +e(list)
-    height: 100px
+  +e(title)
+    grid-area: top
+  +e(categories)
+    grid-area: left
+    max-height: 200px
     overflow: auto
+  +e(appearance)
+    grid-area: right-0
+  +e(image)
+    grid-area: right-1
+    display: flex
+    justify-content: center
+    align-items: center
+    position: relative
+    background-size: cover!important
+    -moz-background-clip: revert
+    &:hover
+      background-color: rgba(var(--color-3), 0.2)
+    &:before
+      content: "Select image"
+      position: absolute
+    #img
+      opacity: 0
+      height: 100%
+      cursor: pointer
+
+
 

@@ -7,18 +7,16 @@ import Sidebar from '../Sidebar/Sidear'
 import NewPost from '../NewPost/NewPost'
 import EditPost from '../EditPost/EditPost'
 import Comments from '../Comments/Comments'
+import NewPostContainer from '../NewPost/NewPostContainer'
 
 class App extends Component {
-	constructor () {
-		super()
-		this.state = {
-			categories: [],
-			comments: [],
-			lastAccess: new Date('2018-07-29T18:04:21.050Z'),
-			admin: {
-				name: 'Mati',
-				avatar: '/images/admin/admin.png'
-			}
+	state = {
+		categories: [],
+		comments: [],
+		lastAccess: new Date('2018-07-29T18:04:21.050Z'),
+		admin: {
+			name: 'Mati',
+			avatar: '/images/admin/admin.png'
 		}
 	}
 
@@ -30,7 +28,7 @@ class App extends Component {
 				res.forEach(cat => categories.push(...cat.categories))
 				this.setState({categories: [...new Set(categories)]})
 			})
-			.catch(err => console.log(err))
+			.catch(console.error)
 	}
 
 	handleComments = () => {
@@ -43,11 +41,9 @@ class App extends Component {
 			.catch(console.error)
 	}
 
-	handleResponse = (response) => {
-		const comments = this.state.comments.map(comment => {
-
-		})
-		this.setState({})
+	handleNewCategory = (category) => {
+		const categories = [...this.state.categories, category]
+		this.setState({categories})
 	}
 
   render() {
@@ -55,7 +51,7 @@ class App extends Component {
     return (
       <div className="admin">
 				<Route path={`/`} component={Sidebar} />
-				<Route path={`/new-post`} render={(props) => <NewPost {...props} categories={categories} />} />
+				<Route path={`/new-post`} render={(props) => <NewPostContainer {...props} categories={categories} handleNewCategory={this.handleNewCategory} />} />
 				<Route path={`/edit-post`} render={(props) => <EditPost {...props} categories={categories}/>} />
 				<Route path={`/comments`} render={(props) => <Comments {...props} admin={admin} lastAccess={lastAccess} comments={comments} handleComments={this.handleComments}/>} />
       </div>

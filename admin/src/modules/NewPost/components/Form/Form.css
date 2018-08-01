@@ -1,9 +1,40 @@
-.new-post__form .form-group {
-  margin: 10px auto;
-  padding: 5px;
-  width: 30%;
-  background: rgba(var(--color-white), 0.8); }
+.new-post__form {
+  background-color: rgba(var(--color-white), 0.8);
+  display: grid;
+  grid-template-rows: auto auto auto auto;
+  grid-template-columns: 50% 50%;
+  grid-template-areas: "top top" "left right-0" "left right-1" "bottom bottom";
+  justify-items: stretch; }
+  .new-post__form .form-group {
+    margin: 10px;
+    padding: 10px;
+    background-color: rgba(var(--color-white), 0.8); }
 
-.form__list {
-  height: 100px;
+.form__title {
+  grid-area: top; }
+
+.form__categories {
+  grid-area: left;
+  max-height: 200px;
   overflow: auto; }
+
+.form__appearance {
+  grid-area: right-0; }
+
+.form__image {
+  grid-area: right-1;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: relative;
+  background-size: cover !important;
+  -moz-background-clip: revert; }
+  .form__image:hover {
+    background-color: rgba(var(--color-3), 0.2); }
+  .form__image:before {
+    content: "Select image";
+    position: absolute; }
+  .form__image #img {
+    opacity: 0;
+    height: 100%;
+    cursor: pointer; }

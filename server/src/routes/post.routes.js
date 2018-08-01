@@ -11,9 +11,9 @@ import multer from 'multer'
 // Get all Posts
 router.route('/').get(PostController.getPosts);
 
-router.route('/').post(PostController.addPost);
+router.route('/').post(uploadImage.single('image'), PostController.addPost);
 
-router.route('/:id').put(PostController.updatePost);
+router.route('/:id').put(uploadImage.single('image'), PostController.updatePost);
 
 router.route('/:id').post(uploadImage.single('image'), PostController.uploadPostImage);
 
