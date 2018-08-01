@@ -24,8 +24,12 @@ export function addPost(req, res) {
 	console.log(`Received POST`)
 	try {
 		validationResult(req).throw()
+		console.log(req.body)
 		Post.create({...req.body})
-			.then(post => res.send(post))
+			.then(post => {
+				console.log(post)
+				res.send(post)
+			})
 			.catch(err => res.send(err.mapped()))
 	} catch (err) {
 		res.send(err.mapped())
@@ -63,5 +67,5 @@ export function getPost(req, res) {
 
 export function uploadPostImage(req, res) {
 	console.log('POST upload image')
-	res.json(`http://localhost:3000/images/${req.params.id}/${req.file.originalname}`)
+	res.json(`/images/${req.params.id}/${req.file.originalname}`)
 }
