@@ -9,12 +9,6 @@ import multer from 'multer'
 
 
 // Get all Posts
-router.route('/').get(CommentController.getComments);
-
-router.route('/:id').post(uploadCommentImage.fields([{name: 'avatar'}, {name: 'username'}, {name: 'comment'}]), CommentController.addComment);
-
-// router.route('/:id').put(CommentController.updateComment);
-//
-// router.route('/:id').delete(CommentController.deleteComment);
+router.route('/:id').post(uploadCommentImage.single('image'), CommentController.addComment);
 
 export default router;

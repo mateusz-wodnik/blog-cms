@@ -13,8 +13,10 @@ app.use(bodyParser.json());
 // Router
 import post from './routes/post.routes'
 import comment from './routes/comment.routes'
+import config from './routes/config.routes'
 app.use('/api/posts', post);
 app.use('/api/comments', comment);
+app.use('/api/config', config);
 
 // Database config
 import './mongoConfig.js'

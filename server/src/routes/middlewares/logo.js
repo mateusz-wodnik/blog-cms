@@ -9,11 +9,10 @@ const storage = multer.diskStorage({
 		});
 	},
 	filename: function (req, file, cb) {
-		console.log(file)
-		cb(null, file.originalname)
+		cb(null, 'logo.jpg')
 	}
 })
 
-const uploadImage = multer({ storage: storage })
+const logo = multer({ storage: storage })
 
-export default uploadImage
+export default logo

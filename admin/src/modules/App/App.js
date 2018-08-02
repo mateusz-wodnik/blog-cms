@@ -8,6 +8,7 @@ import NewPost from '../NewPost/NewPost'
 import EditPost from '../EditPost/EditPost'
 import Comments from '../Comments/Comments'
 import NewPostContainer from '../NewPost/NewPostContainer'
+import Config from '../Config/Config'
 
 class App extends Component {
 	state = {
@@ -54,6 +55,7 @@ class App extends Component {
 				<Route path={`/new-post`} render={(props) => <NewPostContainer {...props} categories={categories} handleNewCategory={this.handleNewCategory} />} />
 				<Route path={`/edit-post`} render={(props) => <EditPost {...props} categories={categories}/>} />
 				<Route path={`/comments`} render={(props) => <Comments {...props} admin={admin} lastAccess={lastAccess} comments={comments} handleComments={this.handleComments}/>} />
+				<Route path={`/config`} render={(props) => <Config {...props} admin={admin} lastAccess={lastAccess} />} />
       </div>
     );
   }

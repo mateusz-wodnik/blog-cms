@@ -8,7 +8,7 @@ import './Sidebar.css'
 const Sidebar = () => (
 	<aside className="sidebar d-flex flex-column text-center">
 		<header className="sidebar__top">
-			<img src={`/icon.png`} alt="logo" className="sidebar__logo img-fluid"/>
+			<img src={`/images/logo.png`} onError={(e) => e.target.src='/images/logo.jpg'} alt="logo" className="sidebar__logo img-fluid"/>
 		</header>
 		<nav className="sidebar__nav nav flex-column">
 			<Link to={`/new-post`} className="sidebar__link nav-link" ><FontAwesomeIcon icon={faPlus}/></Link>
