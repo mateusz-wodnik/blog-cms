@@ -1,6 +1,8 @@
 import React from 'react'
 import MenuItem from './MenuItem'
 import MenuItemWrapper from './MenuItemWrapper'
+import { DragDropContext } from 'react-dnd/lib/index';
+import HTML5Backend from 'react-dnd-html5-backend/lib/index';
 
 const Menu = ({ data=[], handleMenu, handleNewMenuItem, items=[] }) => (
 	<div onSubmit={handleMenu} className="config__menu menu">
@@ -23,4 +25,6 @@ const Menu = ({ data=[], handleMenu, handleNewMenuItem, items=[] }) => (
 	</div>
 )
 
-export default Menu
+export default DragDropContext(HTML5Backend)(Menu)
+
+

@@ -1,7 +1,7 @@
 import React from 'react'
+import { DragSource } from 'react-dnd/lib/index';
 
-
-const MenuItem = ({ item }) => (
+const MenuItem = ({ item, connectDragSource }) => connectDragSource(
 	<form key={item._id} id={item._id} className="input-group">
 		<input type="text"
 					 name="name"
@@ -19,4 +19,24 @@ const MenuItem = ({ item }) => (
 	</form>
 )
 
-export default MenuItem
+const spec = {
+	beginDrag(props) {
+		return props;
+	},
+	endDrag(props) {
+		console.log(props)
+	}
+}
+
+const collect = (connect, monitor) => {
+	return {
+		connectDragSource: connect.dragSource(),
+		connectDragPreview: connect.dragPreview(),
+		isDragging: monitor.isDragging(),
+	}
+}
+
+export default DragSource('MenuItem', spec, collect)(MenuItem);
+
+
+
