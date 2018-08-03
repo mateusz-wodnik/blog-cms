@@ -3,3 +3,13 @@
   height: 200px;
   border: 4px solid;
   background-size: cover; }
+
+.menu__list {
+  display: flex; }
+
+.menu .nav__item {
+  background: gold;
+  padding-left: 20px; }
+  .menu .nav__item--dropdown {
+    display: flex;
+    flex-direction: column; }

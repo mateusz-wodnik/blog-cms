@@ -7,3 +7,16 @@
     border: 4px solid
     background-size: cover
 
+
+.menu
+  +e(list)
+    display: flex
+  .nav
+    +e(item)
+      background: gold
+      padding-left: 20px
+      +m(dropdown)
+        display: flex
+        flex-direction: column
+    +e(link)
+
