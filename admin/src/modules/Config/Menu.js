@@ -13,11 +13,7 @@ const Menu = ({ data=[], handleMenu, handleNewMenuItem, items=[] }) => (
 				<button onClick={handleNewMenuItem} className="btn btn-success" style={{fontWeight: 900}}>＋</button>
 			</div>
 		</form>
-		<div className="menu__items">
-			{items.map(item =>
-				<MenuItem key={item._id} item={item} />
-			)}
-		</div>
+		<Items items={items}/>
 		<div className="menu__list form-group">
 			<MenuItemWrapper items={data} dropdown={false} />
 			<button className="btn btn-success">save</button>
@@ -27,4 +23,10 @@ const Menu = ({ data=[], handleMenu, handleNewMenuItem, items=[] }) => (
 
 export default DragDropContext(HTML5Backend)(Menu)
 
-
+const Items = ({items}) => (
+	<div className="menu__items">
+		{items.map(item =>
+			<MenuItem key={item._id} item={item} />
+		)}
+	</div>
+)
