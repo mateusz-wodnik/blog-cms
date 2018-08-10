@@ -8,7 +8,8 @@ const router = new Router();
 import multer from 'multer'
 
 
-// Get all Posts
-router.route('/:id').post(uploadCommentImage.single('image'), CommentController.addComment);
+// Get all Comments
+router.route('/').get(CommentController.getComments);
+router.route('/:id').post(uploadCommentImage.single('avatar'), CommentController.addComment);
 
 export default router;
