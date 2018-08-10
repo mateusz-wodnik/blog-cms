@@ -25,9 +25,9 @@ export default class Tree extends Component {
 
 	render() {
 		return (
-			<div style={{ height: 400 }}>
-				<button onClick={() => console.log(this.state.treeData)}>elo</button>
+			<div className="menu">
 				<SortableTree
+					className="menu__list"
 					treeData={this.state.treeData}
 					onChange={treeData => this.setState({ treeData })}
 				/>

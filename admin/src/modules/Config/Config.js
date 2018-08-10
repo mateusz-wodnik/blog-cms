@@ -113,6 +113,7 @@ class Config extends Component {
 			<main className="admin__config config">
 				<form className="config__form" >
 					<div className="config__logo form-group">
+						<label htmlFor="#logo">Site logo</label>
 						<div
 							className="config__image"
 							style={{backgroundImage: 'url(/images/logo.jpg)'}}>
@@ -125,6 +126,7 @@ class Config extends Component {
 						</div>
 					</div>
 					<div className="config__logo form-group">
+						<label htmlFor="#icon">Site icon</label>
 						<div
 							className="config__image"
 							style={{backgroundImage: 'url(/images/icon.png)'}}>
@@ -138,6 +140,7 @@ class Config extends Component {
 					</div>
 				</form>
 				<section className="mytree">
+					<h2>Configure menu</h2>
 					<Tree items={menuData}/>
 				</section>
 			</main>

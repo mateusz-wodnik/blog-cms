@@ -1,12 +1,19 @@
 @import "../../mixins.sass"
 
 .config
+  padding: 25px
+  +e(form)
+    display: flex
+    flex-flow: row wrap
+  +e(logo)
+    padding: 15px
   +e(image)
     width: 200px
     height: 200px
     border: 4px solid
     background-size: cover
     display: flex
+    flex-flow: column
     justify-content: center
     align-items: center
     position: relative
@@ -22,7 +29,10 @@
       cursor: pointer
 
 
+.mytree
+  height: 100%
 .menu
+  height: 100%
   +e(list)
     display: flex
   .nav
