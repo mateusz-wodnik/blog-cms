@@ -2,7 +2,21 @@
   width: 200px;
   height: 200px;
   border: 4px solid;
-  background-size: cover; }
+  background-size: cover;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: relative;
+  -moz-background-clip: revert; }
+  .config__image:hover {
+    background-color: rgba(var(--color-3), 0.2); }
+  .config__image:before {
+    content: "Select image";
+    position: absolute; }
+  .config__image .form-control-file {
+    opacity: 0;
+    height: 100%;
+    cursor: pointer; }
 
 .menu__list {
   display: flex; }

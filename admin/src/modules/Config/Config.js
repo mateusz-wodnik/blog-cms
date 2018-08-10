@@ -3,6 +3,7 @@ import { Link } from 'react-router-dom'
 import './Config.css'
 
 import Menu from './Menu'
+import Tree from './Tree'
 
 
 class Config extends Component {
@@ -14,7 +15,25 @@ class Config extends Component {
 		menuItems: []
 	}
 
-	handleImage= (e) => {
+	componentDidMount = () => {
+		fetch('/api/config/menu')
+			.then(res => res.json())
+			.then(allMenuItems => {
+				const menuItems = []
+				const menuData = []
+				allMenuItems.forEach(item => {
+					menuData.push(item)
+					if(!item.active) menuItems.push(item)
+				})
+				this.setState({
+					menuItems,
+					menuData
+				})
+			})
+			.catch(console.error)
+	}
+
+	handleImage = (e) => {
 		// const preserve value for FileReader .onload method
 		const target = e.target
 		const { files, name } = target
@@ -22,7 +41,7 @@ class Config extends Component {
 		this.setState({img: files[0]})
 		const fReader = new FileReader()
 		fReader.onload = () => {
-			target.nextElementSibling.style.backgroundImage = `url(${fReader.result})`;
+			target.parentNode.style.backgroundImage = `url(${fReader.result})`;
 		}
 		const body = new FormData()
 		body.append('logo', files[0], name === 'logo' ? 'logo.jpg' : 'icon.png')
@@ -32,24 +51,6 @@ class Config extends Component {
 			body
 		})
 		return fReader.readAsDataURL(files[0])
-	}
-
-	componentDidMount = () => {
-		fetch('/api/config/menu')
-			.then(res => res.json())
-			.then(allMenuItems => {
-				const menuItems = []
-				const menuData = []
-				allMenuItems.forEach(item => {
-					if(item.top && item.active) menuData.push(item)
-					if(!item.active) menuItems.push(item)
-				})
-				this.setState({
-					menuItems,
-					menuData
-				})
-			})
-			.catch(console.error)
 	}
 
 	handleNewMenuItem = (e) => {
@@ -112,33 +113,33 @@ class Config extends Component {
 			<main className="admin__config config">
 				<form className="config__form" >
 					<div className="config__logo form-group">
-						<input type="file"
-									 className="form-control-file"
-									 id="logo"
-									 name="logo"
-									 onChange={handleImage}
-						/>
 						<div
 							className="config__image"
-							style={{backgroundImage: 'url(/images/logo.jpg)'}}></div>
+							style={{backgroundImage: 'url(/images/logo.jpg)'}}>
+							<input type="file"
+										 className="form-control-file"
+										 id="logo"
+										 name="logo"
+										 onChange={handleImage}
+							/>
+						</div>
 					</div>
 					<div className="config__logo form-group">
-						<input type="file"
-									 className="form-control-file"
-									 id="icon"
-									 name="icon"
-									 onChange={handleImage}
-						/>
 						<div
 							className="config__image"
-							style={{backgroundImage: 'url(/images/icon.png)'}}></div>
+							style={{backgroundImage: 'url(/images/icon.png)'}}>
+							<input type="file"
+										 className="form-control-file"
+										 id="icon"
+										 name="icon"
+										 onChange={handleImage}
+							/>
+						</div>
 					</div>
 				</form>
-				<Menu data={menuData}
-							items={menuItems}
-							handleNewMenuItem={handleNewMenuItem}
-							handleMenu={handleMenu}
-				/>
+				<section className="mytree">
+					<Tree items={menuData}/>
+				</section>
 			</main>
 		)
 	}

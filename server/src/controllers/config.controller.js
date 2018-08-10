@@ -1,4 +1,5 @@
 import MenuItem from '../models/menuItem';
+import Config from '../models/config'
 
 
 export function uploadLogo(req, res) {
@@ -34,8 +35,19 @@ export function updateMenuItem(req, res) {
 
 export function addMenuItem(req, res) {
 	console.log("POST new menu item")
+	const id = req.params.id
 	MenuItem.create(req.body)
-		.then(item => res.send(item))
+		.then(item => {
+			if(id) {
+				MenuItem.update(
+					{_id: id},
+					{$addToSet: {dropdown: item._id}}
+				)
+					.then(res => console.log(res))
+					.catch(console.error)
+			}
+			res.send(item)
+		})
 		.catch(console.error)
 }
 
@@ -60,5 +72,22 @@ export function getMenuItem(req, res) {
 export function deleteMenuItem(req, res) {
 	MenuItem.remove({_id: req.params.id})
 		.then(removed => res.send(removed))
+		.catch(console.error)
+}
+
+export function getConfig(req, res) {
+	Config.find({})
+		.then(config => res.send(config))
+		.catch(console.error)
+}
+
+export function updateConfig(req, res) {
+	const id = req.params.id
+	Config.update(
+		{_id: id},
+		req.body,
+		{ upsert : true }
+	)
+		.then(config => res.send(config))
 		.catch(console.error)
 }

@@ -6,6 +6,20 @@
     height: 200px
     border: 4px solid
     background-size: cover
+    display: flex
+    justify-content: center
+    align-items: center
+    position: relative
+    -moz-background-clip: revert
+    &:hover
+      background-color: rgba(var(--color-3), 0.2)
+    &:before
+      content: "Select image"
+      position: absolute
+    .form-control-file
+      opacity: 0
+      height: 100%
+      cursor: pointer
 
 
 .menu

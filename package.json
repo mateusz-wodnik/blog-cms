@@ -15,5 +15,8 @@
     "build": "npm run build-server && npm run build-client && npm run build-admin"
   },
   "author": "",
-  "license": "ISC"
+  "license": "ISC",
+  "dependencies": {
+    "react-sortable-tree": "^2.2.0"
+  }
 }

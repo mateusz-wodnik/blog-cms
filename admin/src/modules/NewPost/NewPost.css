@@ -34,7 +34,7 @@
   .form__image:before {
     content: "Select image";
     position: absolute; }
-  .form__image #img {
+  .form__image .form-control-file {
     opacity: 0;
     height: 100%;
     cursor: pointer; }
