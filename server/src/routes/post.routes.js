@@ -15,7 +15,7 @@ router.route('/').post(uploadImage.single('image'), PostController.addPost);
 
 router.route('/:id').put(uploadImage.single('image'), PostController.updatePost);
 
-router.route('/:id').post(uploadImage.single('image'), PostController.uploadPostImage);
+router.route('/image').post(uploadImage.single('image'), PostController.uploadPostImage);
 
 router.route('/:id').delete(PostController.deletePost);
 

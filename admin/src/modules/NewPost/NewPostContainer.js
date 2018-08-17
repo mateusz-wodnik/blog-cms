@@ -117,10 +117,9 @@ class NewPostContainer extends Component {
 	}
 
 	imagesUploadHandler = (blobInfo, success, failure) => {
-		const id = this.state.post._id || ''
 		const img = new FormData()
 		img.append('image', blobInfo.blob(), blobInfo.filename())
-		fetch(`/api/posts/${id}`, {
+		fetch(`/api/posts/image`, {
 			method: 'POST',
 			body: img
 		}).then(res => res.json())

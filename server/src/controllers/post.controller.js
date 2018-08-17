@@ -42,7 +42,7 @@ export function updatePost(req, res) {
 	try {
 		// validationResult(req).throw()
 		const post = JSON.parse(req.body.post)
-		post.img = `/images/${req.file.filename}`
+		if(req.file) post.img = `/images/${req.file.filename}`
 		delete post.createdAt
 		delete post.updatedAt
 		Post.update(
