@@ -43,72 +43,33 @@ class Config extends Component {
 		fReader.onload = () => {
 			target.parentNode.style.backgroundImage = `url(${fReader.result})`;
 		}
+		let fileName  = ''
+		switch (name) {
+			case 'logo':
+				fileName = 'logo.jpg'
+				break
+			case 'icon':
+				fileName = 'icon.png'
+				break
+			case 'avatar':
+				fileName = 'avatar.jpg'
+				break
+		}
 		const body = new FormData()
-		body.append('logo', files[0], name === 'logo' ? 'logo.jpg' : 'icon.png')
+		body.append('logo', files[0], fileName)
 
 		fetch(`/api/config/images`, {
 			method: "POST",
 			body
 		})
-		return fReader.readAsDataURL(files[0])
-	}
-
-	handleNewMenuItem = (e) => {
-		e.preventDefault()
-		const { name, link } = e.target.form
-		const body = JSON.stringify({
-			name: name.value,
-			link: link.value,
-		})
-		fetch('api/config/menu', {
-			method: "POST",
-			headers: {
-				'Accept': 'application/json',
-				'Content-Type': 'application/json'
-			},
-			body
-		})
 			.then(res => res.json())
-			.then(item => this.setState({ menuItems: [...this.state.menuItems, item]}))
-			.catch(console.error)
-	}
-
-	handleMenu = (e) => {
-		e.preventDefault()
-		const target = e.target
-		const { name, link, id, del } = target
-		if(del) {
-			return fetch(`/api/config/menu/${id}`, {method: "DELETE"})
-				.then(res => {
-					const menuData = this.state.menuData.filter(item => item._id !== id)
-					const menuItems = this.state.menuItems.filter(item => item._id !== id)
-					this.setState({menuData, menuItems})
-				})
-				.catch(console.error)
-		}
-		const body = JSON.stringify({
-			name: name.value,
-			link: link.value
-		})
-		fetch(`/api/config/menu/${id}`, {
-			method: "PUT",
-			headers: {
-				'Accept': 'application/json',
-				'Content-Type': 'application/json'
-			},
-			body
-		})
-			.then(res => res.json())
-			.then(res => {
-				target.add.classList.remove('btn-warning')
-				target.remove.textContent = '✔'
-			})
-			.catch(console.error)
+			.then(res => fReader.readAsDataURL(files[0]))
+			.catch(err => console.error(err))
 	}
 
 	render() {
-		const { menuData, menuItems } = this.state
-		const { handleNewMenuItem, handleMenu, handleImage } = this
+		const { menuData } = this.state
+		const { handleImage } = this
 		return(
 			<main className="admin__config config">
 				<form className="config__form" >
@@ -134,6 +95,19 @@ class Config extends Component {
 										 className="form-control-file"
 										 id="icon"
 										 name="icon"
+										 onChange={handleImage}
+							/>
+						</div>
+					</div>
+					<div className="config__logo form-group">
+						<label htmlFor="#icon">Admin avatar</label>
+						<div
+							className="config__image"
+							style={{backgroundImage: 'url(/images/avatar.jpg)'}}>
+							<input type="file"
+										 className="form-control-file"
+										 id="avatar"
+										 name="avatar"
 										 onChange={handleImage}
 							/>
 						</div>

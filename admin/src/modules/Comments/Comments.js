@@ -25,7 +25,7 @@ class Comments extends Component {
 		const body = {
 			content: response.value,
 			username: admin.name,
-			avatar: admin.avatar
+			avatar: '../images/avatar.jpg'
 		}
 		fetch(`/api/comments/response/${id}`, {
 			method: 'POST',

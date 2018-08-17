@@ -17,7 +17,7 @@ class App extends Component {
 		lastAccess: new Date('2018-07-29T18:04:21.050Z'),
 		admin: {
 			name: 'Mati',
-			avatar: '/images/admin/admin.png'
+			avatar: '/images/avatar.jpg'
 		}
 	}
 

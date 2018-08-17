@@ -7,6 +7,14 @@ Blog site, with simple CMS as independent application and REST API express serve
 * [Instructions](#instructions)
 * [Dependencies](#dependencies)
 
+## Usage
+```
+preserved images names:
+avatar.jpg for admin avatar (image in comment)
+icon.png for browser tab image
+logo.jpg for blog logo
+```
+
 ## Demo
 soon on heroku
 
