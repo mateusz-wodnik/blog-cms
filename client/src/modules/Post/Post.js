@@ -78,6 +78,7 @@ class Post extends Component {
 
 	render() {
 		const { title, date, comments, content, next, prev } = this.state
+		console.log(comments)
 		return(
 			<section className="blog__post post">
 				<header id="headerImage" className="post__header">

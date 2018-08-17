@@ -1,5 +1,6 @@
 import Post from '../models/post';
 import { validationResult } from 'express-validator/check'
+import Comment from '../models/comment';
 
 export function getPosts(req, res) {
 	console.log('Received GET request')
@@ -68,7 +69,15 @@ export function deletePost(req, res) {
 export function getPost(req, res) {
 	console.log(`Received GET for single example`)
 	Post.findById(req.params.id)
-		.populate('comments')
+		.populate({
+			path: "comments",
+			populate: {
+				path: "response",
+				populate: {
+					path: "response",
+				}
+			}
+		})
 		.then(post => res.send(post))
 		.catch(err => res.send(err))
 }

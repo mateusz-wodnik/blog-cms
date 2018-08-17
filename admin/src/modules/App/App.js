@@ -37,9 +37,15 @@ class App extends Component {
 			.then(res => res.json())
 			.then(comments => {
 				comments.sort((a, b) => new Date(b.updatedAt) - new Date(a.updatedAt));
-				this.setState({comments})
+				const dict = {}
+				comments.forEach(comment => dict[comment._id] = comment)
+				this.setState({comments: dict})
 			})
 			.catch(console.error)
+	}
+
+	handleState = (newState) => {
+		this.setState(newState)
 	}
 
 	handleNewCategory = (category) => {
@@ -54,7 +60,15 @@ class App extends Component {
 				<Route path={`/`} component={Sidebar} />
 				<Route path={`/new-post`} render={(props) => <NewPostContainer {...props} categories={categories} handleNewCategory={this.handleNewCategory} />} />
 				<Route path={`/edit-post`} render={(props) => <EditPost {...props} categories={categories}/>} />
-				<Route path={`/comments`} render={(props) => <Comments {...props} admin={admin} lastAccess={lastAccess} comments={comments} handleComments={this.handleComments}/>} />
+				<Route path={`/comments`} render={(props) =>
+					<Comments {...props}
+										handleState={this.handleState}
+										admin={admin}
+										lastAccess={lastAccess}
+										comments={comments}
+										handleComments={this.handleComments}
+					/>}
+				/>
 				<Route path={`/config`} render={(props) => <Config {...props} admin={admin} lastAccess={lastAccess} />} />
       </div>
     );

@@ -6,19 +6,28 @@ import Comment from './Comment'
 
 class Comments extends Component {
 	componentDidMount() {
-		this.props.handleComments()
+		fetch('/api/comments')
+			.then(res => res.json())
+			.then(comments => {
+				comments.sort((a, b) => new Date(b.updatedAt) - new Date(a.updatedAt));
+				const dict = {}
+				comments.forEach(comment => dict[comment._id] = comment)
+				this.props.handleState({comments: dict})
+			})
+			.catch(console.error)
 	}
 
 	handleResponse = (e) => {
 		e.preventDefault();
-		const id = e.target.dataset.id
-		console.log(id)
+		const { admin, comments, handleState } = this.props
+		const { dataset, response } = e.target
+		const id = dataset.id
 		const body = {
-			content: e.target.response.value,
-			username: this.props.admin.name,
-			avatar: this.props.admin.avatar
+			content: response.value,
+			username: admin.name,
+			avatar: admin.avatar
 		}
-		fetch(`/api/comments/${id}?response=true`, {
+		fetch(`/api/comments/response/${id}`, {
 			method: 'POST',
 			headers: {
 				'Accept': 'application/json',
@@ -26,7 +35,11 @@ class Comments extends Component {
 			},
 			body: JSON.stringify(body)
 		}).then(res => res.json())
-			.then(res => console.log(res))
+			.then(res => {
+				comments[id].response.push(res._id)
+				comments[res._id] = res
+				handleState({comments})
+			})
 			.catch(console.error)
 	}
 
@@ -35,15 +48,16 @@ class Comments extends Component {
 		return(
 			<main className="admin__comments comments">
 				<ul onSubmit={this.handleResponse} className="comments__list list-group">
-					{comments.map((comment, idx) =>
-						<Comment
+					{Object.values(comments).map((comment, idx) =>
+						comment.post ? <Comment
 							key={comment._id}
+							comments={comments}
 							comment={comment}
 							handleResponse={this.handleResponse}
 							username={this.props.admin.name}
 							avatar={this.props.admin.avatar}
 							isNew={lastAccess < new Date(comment.updatedAt)}
-						/>
+						/> : null
 					)}
 				</ul>
 			</main>

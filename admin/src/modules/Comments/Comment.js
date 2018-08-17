@@ -4,7 +4,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faAngleDown } from '@fortawesome/free-solid-svg-icons'
 
 
-const Comment = ({comment, isNew=false, handleResponse}) => {
+const Comment = ({comment, comments, isNew=false, handleResponse}) => {
 	const { username, createdAt, content, response=[] } = comment
 	return(
 		<li className={`comments__comment card${isNew ? ' comments__comment--new' : ''}`}>
@@ -16,9 +16,9 @@ const Comment = ({comment, isNew=false, handleResponse}) => {
 				<p className="comments__content">{content}</p>
 				<div className="comment__response">
 					{response.map((comment, idx) => {
-						console.log(comment)
 						return <Comment key={idx}
-										 comment={comment}
+														comments={comments}
+										 comment={comments[comment]}
 										 handleResponse={handleResponse}
 						/>
 					}
