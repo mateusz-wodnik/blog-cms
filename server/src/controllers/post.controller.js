@@ -41,9 +41,7 @@ export function addPost(req, res) {
 export function updatePost(req, res) {
 	try {
 		// validationResult(req).throw()
-		// console.log(req.body)
 		const post = JSON.parse(req.body.post)
-		// console.log(post)
 		post.img = `/images/${req.file.filename}`
 		delete post.createdAt
 		delete post.updatedAt
@@ -69,17 +67,9 @@ export function deletePost(req, res) {
 export function getPost(req, res) {
 	console.log(`Received GET for single example`)
 	Post.findById(req.params.id)
-		.populate({
-			path: "comments",
-			populate: {
-				path: "response",
-				populate: {
-					path: "response",
-				}
-			}
-		})
+		.populate('comments')
 		.then(post => res.send(post))
-		.catch(err => res.send(err))
+		.catch(err => res.send(403, err))
 }
 
 export function uploadPostImage(req, res) {

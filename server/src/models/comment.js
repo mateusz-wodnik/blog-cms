@@ -16,6 +16,9 @@ var autoPopulateLead = function(next) {
 
 CommentSchema.
 pre('findOne', autoPopulateLead)
-	// .pre('find', autoPopulateLead);
+	.pre('find', function(next) {
+		if(this.getQuery()._id) this.populate('response')
+		next()
+	});
 
 export default mongoose.model('Comment', CommentSchema);

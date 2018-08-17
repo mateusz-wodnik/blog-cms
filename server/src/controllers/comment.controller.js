@@ -12,7 +12,6 @@ export function getComments(req, res) {
 export function getPostComments(req, res) {
 	console.log('Received GET request')
 	Comment.find({post: req.params.post})
-		.populate('response')
 		.then(comments => res.send(comments))
 		.catch(err => res.send(err))
 }
