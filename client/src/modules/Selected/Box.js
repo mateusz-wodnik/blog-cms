@@ -4,7 +4,7 @@ import './Box.css'
 
 const Box = ({img, title, date, id}) => (
 	<div className="box">
-		<Link to={`/${id}`}>
+		<Link to={`posts/${id}`}>
 			<img className="box__img" src={`${img}`} alt="promoted post" />
 		</Link>
 		<h3 className="box__title">{title}</h3>

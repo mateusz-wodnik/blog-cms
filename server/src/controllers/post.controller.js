@@ -15,7 +15,10 @@ export function getPosts(req, res) {
 		query = {featured: true}
 	} else if(req.query.slider === 'true') {
 		query = {slider: true}
+	} else if(req.query.category) {
+		query = {categories: req.query.category}
 	}
+	console.log(query, items)
 	Post.find(query, items)
 		.then(posts => res.send(posts))
 		.catch(err => res.send(err))

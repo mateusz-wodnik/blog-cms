@@ -23,7 +23,8 @@ class App extends Component {
 				<Route exact path={"/"} component={Slider}/>
 				<Route exact path={"/"} component={Selected}/>
 				<Route exact path={"/"} component={PostList}/>
-				<Route path={'/:post'} component={Post}/>
+				<Route path={'/categories/:category'} component={PostList}/>
+				<Route path={'/posts/:post'} component={Post}/>
 				<Footer />
       </div>
     );

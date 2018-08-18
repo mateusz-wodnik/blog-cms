@@ -8,8 +8,8 @@ const elo = (items, dropdown) => {
 		return (
 			<div className={`nav__item${dropdown ? ` nav__item--dropdown` : ''}`} key={idx}>
 				{item.link ?
-					<Link to={item.link} className="nav__link">{item.name}</Link> :
-					<Link to={item.name.trim().replace(' ', '-')} className="nav__link"
+					<Link to={`/categories/${item.link}`} className="nav__link">{item.name}</Link> :
+					<Link to={`/categories/${item.name.trim().replace(' ', '-')}`} className="nav__link"
 					>{item.name}</Link>
 				}
 				{item.dropdown.length ? elo(item.dropdown, true) : null}

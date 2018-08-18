@@ -1,48 +1,60 @@
 import React, { Component } from 'react';
 import './PostList.css'
 import Post from './Post';
+import ModuleHeader from '../../components/ModuleHeader/ModuleHeader'
 
 class PostList extends Component {
 	constructor (props) {
 		super(props)
 		this.state = {
 			posts: [],
-			render: []
+			render: [],
+			title: 'Nowe posty'
 		}
 	}
 
 	componentDidMount() {
-		fetch('/api/posts?short=true')
+		this.handlePostsChange(this.props.match.params.category)
+	}
+
+	handlePostsChange = (category) => {
+		const query = category ? `&category=${category}` : ''
+		fetch(`/api/posts?short=true${query}`)
 			.then(res => res.json())
 			.then(res => {
 				const render = res.slice(0, 3)
 				this.setState({
 					posts: res,
-					render
+					render,
+					title: category || 'Nowe posty'
 				})
 			})
 			.catch(err => console.log(err))
 	}
 
 	handleSelect = (e) => {
-		const range = e.target.dataset.postsRange
+		const target = e.target
+		const range = target.dataset.postsRange
 		const render = this.state.posts.slice(range - 3, range)
-		this.setState({render})
+		this.setState({render}, () => {
+			target.closest('#post-list').scrollIntoView({
+				behavior: 'smooth'
+			})
+		})
 	}
 
-	renderButtons = () => {
-		const render = []
-		for(let i = 1; i < (this.state.posts.length + 3) / 3; i++){
-			render.push(<button key={i} className="post-list__btn" data-posts-range={i * 3} onClick={this.handleSelect}>{i}</button>)
+	componentDidUpdate(prev, now) {
+		if(prev.match.params.category !== this.props.match.params.category) {
+			this.handlePostsChange(this.props.match.params.category)
 		}
-		return render
 	}
 
 	render() {
+		const {title, render} = this.state
 		return (
-			<section className="blog__post-list post-list">
-				<button onClick={() => console.log(this.state)}>elo</button>
-				{this.state.render.map((post, idx) =>
+			<section id={"post-list"} className="blog__post-list post-list">
+				<ModuleHeader title={title}/>
+				{render.map((post, idx) =>
 					<Post
 						key={idx}
 						title={post.title}
@@ -57,6 +69,14 @@ class PostList extends Component {
 					</div>
 			</section>
 		)
+	}
+
+	renderButtons = () => {
+		const buttons = []
+		for(let i = 1; i < (this.state.posts.length + 3) / 3; i++){
+			buttons.push(<button key={i} className="post-list__btn" data-posts-range={i * 3} onClick={this.handleSelect}>{i}</button>)
+		}
+		return buttons
 	}
 }
 

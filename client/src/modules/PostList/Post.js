@@ -12,7 +12,7 @@ const Post = ({category, title, date, comments, img, id}) => (
 			<p className="post-prev__date">{date}</p>
 		</header>
 		<div className="post-prev__body">
-			<Link to={`/${id}`}>
+			<Link to={`/posts/${id}`}>
 				<img className="post-prev__img" src={`${img}`} alt="main post-prev"/>
 			</Link>
 		</div>
