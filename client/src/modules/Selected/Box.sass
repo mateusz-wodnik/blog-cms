@@ -1,11 +1,13 @@
 @import "../../mixins.sass"
 
 .box
-  min-width: 200px
   max-width: 48%
+  min-width: 300px
+  flex: 1 30%
   border-bottom: 5px solid var(--main-pink)
   text-align: center
-  margin: 20px auto
+  margin: 20px 10px
+  background: var(--main-white)
   +e(img)
     width: 100%
   +e(title)

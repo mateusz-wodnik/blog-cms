@@ -27,6 +27,11 @@ class Post extends Component {
 	}
 
 	componentDidMount() {
+		document.querySelector('.blog__header').style.height = 'inherit'
+		window.scrollTo({
+			top: 10,
+			behavior: 'smooth'
+		})
 		fetch(`/api/posts/${this.props.match.params.post}`)
 			.then(res => res.json())
 			.then(res => {
@@ -42,6 +47,10 @@ class Post extends Component {
 					prev
 				})
 			})
+	}
+
+	componentWillUnmount = () => {
+		// document.querySelector('.blog__header').style.height = '100vh'
 	}
 
 	handleAddComment = (e) => {

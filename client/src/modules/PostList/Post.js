@@ -25,7 +25,7 @@ const Post = ({category, title, date, comments, img, id}) => (
 				<a href="http://www.pinterest.com"><FontAwesomeIcon icon={faPinterest}/></a>
 			</div>
 			<div className="post-prev__comments">
-				<p className="post-prev__comments">{comments} comments</p>
+				<p className="post-prev__comments">{comments.length} comments</p>
 			</div>
 		</div>
 	</div>

@@ -25,7 +25,7 @@ class Slider extends Component {
 		console.log(slider)
 		return (
 			<section className="blog__slider slider">
-				<Carousel showThumbs={false} showStatus={false}>
+				<Carousel className="slider__wrapper" showThumbs={false} showStatus={false}>
 					{slider.map((slide, idx) => (
 						<div key={idx} className="slider__item">
 							<div className="slider__caption">

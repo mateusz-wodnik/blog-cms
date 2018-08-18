@@ -40,9 +40,7 @@ const Comment = ({comment}) => {
 	const { content, username, avatar, createdAt, response=[] } = comment
 	return(
 		<div className="comments__comment comment">
-			<header className="comment__header">
-				<img className="comment__img" src={avatar || placeholder} alt=""/>
-			</header>
+			<img className="comment__img" src={avatar || placeholder} alt=""/>
 			<div className="comment__content">
 				<h5 className="comment__name">{username}<small className="comment__date">{new Date(createdAt).toLocaleDateString()}</small></h5>
 				<p className="comment__text">{content}</p>

@@ -4,11 +4,18 @@
 .header
   display: flex
   flex-flow: column
+  height: 100vh
+  transition: 1s
   +e(top)
     display: flex
     justify-content: space-between
     text-transform: uppercase
     border-bottom: 2px solid var(--grey)
+    position: sticky
+    background: var(--main-white)
+    top: 0
+    z-index: 1
+    bottom: 150px
   +e(caption)
     font-family: var(--font-support)
   +e(social)
@@ -23,7 +30,11 @@
     +m(search)
       border-left: 2px solid var(--grey)
   +e(logo)
-    display: flex
+    position: sticky
+    top: 60px
+    overflow: hidden
+    background: rgba(0,0,0,0.2)
+    width: 100%
+    padding: 20px
     img
-      margin: auto
-      width: 80%
+      width: 40%

@@ -1,13 +1,22 @@
 @import "../../mixins.sass"
 
 .post-list
+  display: grid
+  grid-template-columns: 2fr 1fr
+  grid-gap: 40px
+  padding: 10px
   +e(select)
     display: flex
     justify-content: center
+    grid-column: 1 / 2
   +e(btn)
     padding: 10px 20px
-    margin: 0 10px
-    background: goldenrod
+    border: 2px solid black
+    background: var(--main-pink)
     cursor: pointer
-    &:active
-      filter: brightness(50%)
+    &:last-child
+      border-radius: 0 0 20px 0
+    &:first-child
+      border-radius: 0 0 0 20px
+    &:active, &:hover
+      filter: brightness(70%)

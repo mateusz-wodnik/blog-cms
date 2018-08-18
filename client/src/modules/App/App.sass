@@ -2,10 +2,15 @@
 
 .blog
   height: 100%
-  overflow: hidden
+  background-image: url("/images/IMG_6122-min.jpg")
+  background-repeat: no-repeat
+  background-size: auto 100%
+  background-position: 0 0
+  background-attachment: fixed
   +e(header)
   +e(nav)
   +e(post-list)
-  +e(header)
-  +e(header)
-  +e(header)
+
+@media (min-width: 320px)
+  .blog
+    background-size: 100%

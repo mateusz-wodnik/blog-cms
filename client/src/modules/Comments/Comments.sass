@@ -5,6 +5,8 @@
   margin: auto
   display: flex
   flex-flow: column
+  background: rgba(255,255,255,0.6)
+  padding: 20px
   +e(header)
   +e(add)
     display: flex
@@ -13,8 +15,8 @@
     display: flex
     flex-flow: row
     justify-content: center
-    width: 70%
     margin-left: 20px
+    background: var(--main-white)
   +e(img)
     min-width: 80px
     height: 100px
@@ -48,21 +50,27 @@
     padding: 0 5px
     margin-left: 5px
     border: 2px solid var(--bg-pink)
+    background: var(--main-pink)
+    &:hover
+      filter: brightness(70%)
   +e(list)
     margin-top: 20px
 
 .comment
   display: flex
   margin: 10px 0
+  background: var(--main-white)
   +e(img)
-    width: 50px
+    width: 15%
   +e(content)
     margin-left: 20px
+    padding: 5px
   +e(name)
     margin: 0
   +e(date)
     margin-left: 10px
   +e(text)
+    padding: 10px
     margin: 0
   +e(response)
     margin-top: 20px
