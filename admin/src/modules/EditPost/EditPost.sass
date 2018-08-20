@@ -7,10 +7,9 @@
     justify-content: space-around
     align-content: space-evenly
     align-items: flex-start
-    width: 100%
-    height: 100%
   +e(category)
     position: relative
+    margin-bottom: 20px
     width: 300px
     background: rgba(var(--color-5), 0.5)
   +e(posts)
@@ -18,14 +17,11 @@
     min-height: 80px
     background: rgba(var(--color-5), 1)
   +e(post)
-    display: flex
-    justify-content: space-between
     &:hover .edit-post__actions
       opacity: 1
       z-index: 1
   +e(date)
-    max-width: 30%
-    margin-left: 10px
+    text-align: right
   +e(actions)
     display: flex
     justify-content: space-around
@@ -40,16 +36,13 @@
     z-index: -1
   +e(action)
     display: flex
+    justify-content: center
+    align-items: center
     width: 60px
     height: 60px
     border: 1px solid
     border-radius: 50%
     &:hover
       background: rgba(var(--color-4), 1)
-    svg
-      margin: auto
     +m(edit)
       background: rgba(var(--color-4), 0.7)
-    +m(grab)
-      background: rgba(var(--color-5), 0.7)
-      cursor: grab

@@ -7,17 +7,15 @@
 
 .admin__comments .comments
   +e(list)
-    display: flex
-    flex-flow: row wrap
-    justify-content: space-around
+    display: grid
+    grid-template-columns: auto
+    justify-items: center
     align-items: flex-start
+    grid-gap: 20px
   +e(comment)
-    //flex: 1 30%
-    min-width: 200px
     display: flex
     flex-flow: column
-    justify-content: stretch
-    margin: 20px 0
+    justify-content: flex-start
     +m(new)
       background: rgba(var(--color-5), 0.7)
   +e(info)
@@ -33,8 +31,11 @@
     justify-content: space-between
   +e(response)
     &:hover .comments__form
-      height: 80px
+      height: 3em
   +e(form)
+    position: absolute
+    left: 0
+    z-index: 1
     display: flex
     flex-flow: row
     width: 100%
@@ -42,4 +43,17 @@
     overflow: hidden
     transition: 0.4s
 
+.comment__response .comments__comment
+  margin-bottom: 20px
 
+@media (min-width: 520px)
+  .admin__comments .comments
+    +e(list)
+      grid-template-columns: repeat(2, auto)
+
+
+@media (min-width: 768px)
+  .admin__comments .comments
+    +e(list)
+      justify-items: baseline
+      grid-template-columns: repeat(3, auto)

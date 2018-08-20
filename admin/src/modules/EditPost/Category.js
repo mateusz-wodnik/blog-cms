@@ -3,7 +3,6 @@ import { Link } from 'react-router-dom';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faHandPaper, faEdit } from '@fortawesome/free-regular-svg-icons'
 
-
 const Category = ({name, posts}) => (
 	<div className="edit-post__category card">
 		<div className="card-header">
@@ -16,9 +15,6 @@ const Category = ({name, posts}) => (
 						<Link to={`/edit-post/${post._id}`} className="edit-post__action edit-post__action--edit">
 							<FontAwesomeIcon icon={faEdit} />
 						</Link>
-						<div className="edit-post__action edit-post__action--grab" >
-							<FontAwesomeIcon icon={faHandPaper} />
-						</div>
 					</div>
 					<p>{post.title}</p>
 					<p className="edit-post__date">{new Date(post.updatedAt).toDateString()}</p>
