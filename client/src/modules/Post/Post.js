@@ -107,7 +107,7 @@ class Post extends Component {
 					</div>
 				</header>
 				<article
-					className="post__content"
+					className="post__content content"
 					dangerouslySetInnerHTML={{__html: content}}
 				></article>
 				<footer className="post__footer">

@@ -18,7 +18,7 @@ class Selected extends Component {
 	render() {
 		const { selected } = this.state
 		return (
-			<section className="blog__selected selected">
+			<section className="blog__selected selected content">
 				<ModuleHeader title={"Polecane posty"} />
 				{selected.map((post, idx) =>
 					<Box

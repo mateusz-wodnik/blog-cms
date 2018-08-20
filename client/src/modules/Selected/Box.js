@@ -7,8 +7,10 @@ const Box = ({img, title, date, id}) => (
 		<Link to={`posts/${id}`}>
 			<img className="box__img" src={`${img}`} alt="promoted post" />
 		</Link>
-		<h3 className="box__title">{title}</h3>
-		<p className="box__date">{date}</p>
+		<footer className="box__footer">
+			<h3 className="box__title">{title}</h3>
+			<p className="box__date">{new Date(date).toDateString()}</p>
+		</footer>
 	</div>
 );
 

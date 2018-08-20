@@ -7,7 +7,7 @@ class Comments extends Component {
 	render() {
 		const { comments, handleAddComment, handleCommentImage, user={} } = this.props
 		return(
-			<section className="blog__comments comments">
+			<section className="blog__comments comments content">
 				<header className="comments__header">
 					<p className="comments__number">{comments.length} Komentarze</p>
 				</header>
@@ -40,10 +40,14 @@ const Comment = ({comment}) => {
 	const { content, username, avatar, createdAt, response=[] } = comment
 	return(
 		<div className="comments__comment comment">
-			<img className="comment__img" src={avatar || placeholder} alt=""/>
 			<div className="comment__content">
-				<h5 className="comment__name">{username}<small className="comment__date">{new Date(createdAt).toLocaleDateString()}</small></h5>
-				<p className="comment__text">{content}</p>
+				<header className="comment__header">
+					<img className="comment__img" src={avatar || placeholder} alt=""/>
+					<div>
+						<h5 className="comment__name">{username}<small className="comment__date">{new Date(createdAt).toLocaleDateString()}</small></h5>
+						<p className="comment__text">{content}</p>
+					</div>
+				</header>
 				<div className="comment__response">
 					{response.map((comment, idx) => (
 						<Comment

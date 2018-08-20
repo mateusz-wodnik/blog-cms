@@ -4,11 +4,22 @@
   max-width: 48%
   min-width: 300px
   flex: 1 30%
+  display: flex
+  flex-flow: column
   border-bottom: 5px solid var(--main-pink)
   text-align: center
   margin: 20px 10px
   background: var(--main-white)
+  &:hover &__footer
+    filter: brightness(80%)
   +e(img)
     width: 100%
+    height: 100%
+  +e(footer)
+    padding: 10px
+    height: 100%
+    transition: 0.4s
+    background: var(--main-white)
   +e(title)
+    overflow: hidden
     text-transform: uppercase

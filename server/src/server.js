@@ -10,6 +10,11 @@ const server = http.Server(app);
 // Body parser
 app.use(bodyParser.json());
 
+app.use(express.static(`${__dirname}/../public`))
+app.use(express.static(`${__dirname}/../admin`))
+app.get('/admin/*', (req, res) => {
+	res.sendFile(`${__dirname}/../../production/admin/index.html`)
+})
 // Router
 import post from './routes/post.routes'
 import comment from './routes/comment.routes'
@@ -20,12 +25,5 @@ app.use('/api/config', config);
 
 // Database config
 import './mongoConfig.js'
-
-// // Serve static files
-// app.use(express.static(`${__dirname}/../public`))
-
-// production
-app.use(express.static(`${__dirname}/../public`))
-app.use(express.static(`${__dirname}/../admin`))
 
 server.listen(port, () => {console.log(`server listens on port: ${port}`)});

@@ -52,7 +52,7 @@ class PostList extends Component {
 	render() {
 		const {title, render} = this.state
 		return (
-			<section id={"post-list"} className="blog__post-list post-list">
+			<section id={"post-list"} className="blog__post-list post-list content">
 				<ModuleHeader title={title}/>
 				{render.map((post, idx) =>
 					<Post

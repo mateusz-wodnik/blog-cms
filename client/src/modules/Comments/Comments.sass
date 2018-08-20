@@ -58,13 +58,21 @@
 
 .comment
   display: flex
-  margin: 10px 0
+  flex-flow: column wrap
   background: var(--main-white)
-  +e(img)
-    width: 15%
+  overflow: hidden
+  &:hover .comment__response
     height: 100%
+  +e(header)
+    display: flex
+  +e(img)
+    min-width: 30px
+    max-width: 80px
+    height: 100%
+    max-height: 100px
+    z-index: 1
   +e(content)
-    margin-left: 20px
+    margin-left: 5px
     padding: 5px
   +e(name)
     margin: 0
@@ -74,4 +82,4 @@
     padding: 10px
     margin: 0
   +e(response)
-    margin-top: 20px
+    height: 0
