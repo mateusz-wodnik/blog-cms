@@ -1,32 +1,18 @@
 import React from 'react'
-import MenuItem from './MenuItem'
-import MenuItemWrapper from './MenuItemWrapper'
-import { DragDropContext } from 'react-dnd/lib/index';
-import HTML5Backend from 'react-dnd-html5-backend/lib/index';
+import './Menu.css'
 
-const Menu = ({ data=[], handleMenu, handleNewMenuItem, items=[] }) => (
-	<div onSubmit={handleMenu} className="config__menu menu">
-		<form id="addNewMenuItem" className="menu__add">
-			<div className="input-group">
-				<input name="name" type="text" className="form-control" placeholder="Name" />
-				<input name="link" type="text" className="form-control" placeholder="Custom link" />
-				<button onClick={handleNewMenuItem} className="btn btn-success" style={{fontWeight: 900}}>＋</button>
+const Menu = ({children, handleAddMenuItem}) => (
+	<section className="config__menu menu">
+		<h2>Configure menu</h2>
+		<form className="menu__new input-group" onSubmit={handleAddMenuItem} >
+			<input className="menu__name form-control" type="text" name="name" placeholder="name" />
+			<input className="menu__link form-control" type="text" name="link" placeholder="link" />
+			<div className="input-group-append">
+				<button className="menu__add btn btn-success">Add</button>
 			</div>
 		</form>
-		<Items items={items}/>
-		<div className="menu__list form-group">
-			<MenuItemWrapper items={data} dropdown={false} />
-			<button className="btn btn-success">save</button>
-		</div>
-	</div>
+		{children}
+	</section>
 )
 
-export default DragDropContext(HTML5Backend)(Menu)
-
-const Items = ({items}) => (
-	<div className="menu__items">
-		{items.map(item =>
-			<MenuItem key={item._id} item={item} />
-		)}
-	</div>
-)
+export default Menu

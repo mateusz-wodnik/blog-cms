@@ -1,9 +1,13 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom'
 import './Config.css'
-
+import { convert, reverseConvert } from '../../_utils/tree'
+import 'react-sortable-tree/style.css'; // This only needs to be imported once in your app
+import { removeNodeAtPath } from 'react-sortable-tree'
+import SortableTree from 'react-sortable-tree';
 import Menu from './Menu'
-import Tree from './Tree'
+import ImageChange from './ImageChange'
+
 
 
 class Config extends Component {
@@ -11,50 +15,73 @@ class Config extends Component {
 		img: '',
 		logo: '',
 		icon: '',
-		menuData: [],
+		menu: [],
 		menuItems: []
 	}
 
 	componentDidMount = () => {
-		fetch('/api/config/menu')
-			.then(res => res.json())
-			.then(allMenuItems => {
-				const menuItems = []
-				const menuData = []
-				allMenuItems.forEach(item => {
-					menuData.push(item)
-					if(!item.active) menuItems.push(item)
-				})
-				this.setState({
-					menuItems,
-					menuData
-				})
+		fetch('/api/config/')
+			.then(res => {
+				console.log(res)
+				return res.json()
+			})
+			.then(config => {
+				console.log(config)
+				this.setState({...config})
 			})
 			.catch(console.error)
 	}
 
-	handleImage = (e) => {
-		// const preserve value for FileReader .onload method
-		const target = e.target
-		const { files, name } = target
+	handleMenuChange = (treeData) => {
+		console.log(treeData)
+		const menu = convert(treeData)
+		console.log(menu)
+		return this.setState({menu})
+	}
 
-		this.setState({img: files[0]})
+
+	handleMenuConfirm = (treeData) => {
+		fetch('/api/config/menu', {
+			method: 'POST',
+			headers: {
+				'Accept': 'application/json',
+				'Content-Type': 'application/json'
+			},
+			body: JSON.stringify(this.state.menu)
+		}).then(res => this.setState({menu: this.state.menu}))
+	}
+
+	handleAddMenuItem = (e) => {
+		e.preventDefault()
+		const { name, link } = e.target
+		const item = { name: name.value, link: link.value }
+		console.log(item)
+		fetch('/api/config/menu/item', {
+			method: 'POST',
+			headers: {
+				'Accept': 'application/json',
+				'Content-Type': 'application/json'
+			},
+			body: JSON.stringify(item)
+		}).then(item => item.json())
+			.then(newItem => {
+				console.log(newItem)
+				this.setState({
+					menu: [...this.state.menu, newItem]
+				})
+			})
+			.catch(err => console.log(err))
+	}
+
+	handleImage = (e) => {
+		// const preserve value for FileReader async .onload method
+		const target = e.target
+		const { files, dataset } = target
+		const fileName = dataset.file
+		
 		const fReader = new FileReader()
-		fReader.onload = () => {
-			target.parentNode.style.backgroundImage = `url(${fReader.result})`;
-		}
-		let fileName  = ''
-		switch (name) {
-			case 'logo':
-				fileName = 'logo.jpg'
-				break
-			case 'icon':
-				fileName = 'icon.png'
-				break
-			case 'avatar':
-				fileName = 'avatar.jpg'
-				break
-		}
+		fReader.onload = () => target.parentNode.style.backgroundImage = `url(${fReader.result})`;
+		
 		const body = new FormData()
 		body.append('logo', files[0], fileName)
 
@@ -68,55 +95,37 @@ class Config extends Component {
 	}
 
 	render() {
-		const { menuData } = this.state
-		const { handleImage } = this
+		const { menu } = this.state
+		const { handleImage, handleAddMenuItem, handleMenuChange, handleMenuConfirm } = this
+		const treeData = reverseConvert(menu)
+		
 		return(
 			<main className="admin__config config">
+				<Menu handleAddMenuItem={handleAddMenuItem} >
+					<SortableTree 
+						className="menu__tree"
+						treeData={treeData}
+						onChange={data => handleMenuChange(data)}
+						getNodeKey={item => item.node._id}
+						generateNodeProps={rowInfo => ({
+							buttons: [
+								<button className="btn btn-danger" 
+									onClick={() => handleMenuChange(removeNodeAtPath({
+										treeData: treeData,
+										path: rowInfo.path,
+										getNodeKey: info => info.node._id
+									}))}
+								>Delete</button>
+							]
+						})}
+					/>
+					<button className="btn btn-success menu__confirm" onClick={handleMenuConfirm}>Confirm</button>
+				</Menu>
 				<form className="config__form" >
-					<div className="config__logo form-group">
-						<label htmlFor="#logo">Site logo</label>
-						<div
-							className="config__image"
-							style={{backgroundImage: 'url(/images/logo.jpg)'}}>
-							<input type="file"
-										 className="form-control-file"
-										 id="logo"
-										 name="logo"
-										 onChange={handleImage}
-							/>
-						</div>
-					</div>
-					<div className="config__logo form-group">
-						<label htmlFor="#icon">Site icon</label>
-						<div
-							className="config__image"
-							style={{backgroundImage: 'url(/images/icon.png)'}}>
-							<input type="file"
-										 className="form-control-file"
-										 id="icon"
-										 name="icon"
-										 onChange={handleImage}
-							/>
-						</div>
-					</div>
-					<div className="config__logo form-group">
-						<label htmlFor="#icon">Admin avatar</label>
-						<div
-							className="config__image"
-							style={{backgroundImage: 'url(/images/avatar.jpg)'}}>
-							<input type="file"
-										 className="form-control-file"
-										 id="avatar"
-										 name="avatar"
-										 onChange={handleImage}
-							/>
-						</div>
-					</div>
+					<ImageChange handleImage={handleImage} label="Site logo" name="logo" file="logo.jpg" />
+					<ImageChange handleImage={handleImage} label="Site icon" name="icon" file="icon.png" />
+					<ImageChange handleImage={handleImage} label="Admin avatar" name="avatar" file="avatar.jpg" />
 				</form>
-				<section className="mytree">
-					<h2>Configure menu</h2>
-					<Tree items={menuData}/>
-				</section>
 			</main>
 		)
 	}

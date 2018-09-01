@@ -1,10 +1,14 @@
 .config {
-  padding: 25px; }
+  padding: 25px;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  grid-column-gap: 20px;
+  overflow: hidden; }
   .config__form {
     display: flex;
-    flex-flow: row wrap; }
-  .config__logo {
-    padding: 15px; }
+    flex-flow: row wrap;
+    justify-content: space-around;
+    align-content: flex-start; }
   .config__image {
     width: 200px;
     height: 200px;
@@ -25,18 +29,3 @@
       opacity: 0;
       height: 100%;
       cursor: pointer; }
-
-.mytree {
-  height: 100%; }
-
-.menu {
-  height: 100%; }
-  .menu__list {
-    display: flex; }
-  .menu .nav__item {
-    border: 2px solid;
-    background: gold;
-    padding-left: 20px; }
-    .menu .nav__item--dropdown {
-      display: flex;
-      flex-direction: column; }

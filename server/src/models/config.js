@@ -2,7 +2,7 @@ import mongoose from 'mongoose';
 const Schema = mongoose.Schema;
 
 const ConfigSchema = new Schema({
-	"menu": [{ type: Schema.ObjectId, ref: "menuItem" }],
+	"menu": [{}],
 }, { timestamps: true });
 
 const autoPopulateLead = function(next) {

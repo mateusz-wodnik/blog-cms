@@ -9,13 +9,12 @@ import multer from 'multer'
 
 // Get all Posts
 router.route('/').get(ConfigController.getConfig);
-router.route('/:id').put(ConfigController.updateConfig);
+
+router.route('/menu').post(ConfigController.updateMenu);
+
+router.route('/menu/item').post(ConfigController.addMenuItem);
+
 router.route('/images').post(postImages.single('logo'), ConfigController.uploadLogo);
-router.route('/menu/:id').put(ConfigController.updateMenuItem);
-router.route('/menu').post(ConfigController.addMenuItem);
-router.route('/menu/:id').post(ConfigController.addMenuItem);
-router.route('/menu').get(ConfigController.getMenuItems);
-router.route('/menu/:id').get(ConfigController.getMenuItem);
-router.route('/menu/:id').delete(ConfigController.deleteMenuItem);
 
 export default router;
+

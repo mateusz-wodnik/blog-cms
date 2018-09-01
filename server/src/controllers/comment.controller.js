@@ -25,11 +25,11 @@ export function addComment(req, res) {
 		const comments = {username, content, avatar, post}
 		Comment.create(comments)
 			.then(comment => {
-					Post.update({_id: req.params.id}, {$addToSet: {comments: comment}})
-						.then(raw => {
-							res.send(comment)
-						})
-						.catch(err => res.send(403, err))
+				Post.update({_id: req.params.id}, {$addToSet: {comments: comment}})
+					.then(raw => {
+						res.send(comment)
+					})
+					.catch(err => res.send(403, err))
 			})
 			.catch(err => res.send(err))
 	} catch (err) {
