@@ -51,6 +51,9 @@ class Config extends Component {
 		const { name, link } = e.target
 		const item = { name: name.value, link: link.value }
 		this.setState({ menu: [...this.state.menu, item] })
+		name.value = ''
+		link.value = ''
+		name.focus()
 	}
 
 	handleImage = (e) => {
