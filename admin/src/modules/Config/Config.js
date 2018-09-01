@@ -58,10 +58,10 @@ class Config extends Component {
 		const target = e.target
 		const { files, dataset } = target
 		const fileName = dataset.file
-		
+		// Create FileReader instance and set loaded image as background behind input file area
 		const fReader = new FileReader()
 		fReader.onload = () => target.parentNode.style.backgroundImage = `url(${fReader.result})`;
-		
+		// Create new FormData to send image file to server
 		const body = new FormData()
 		body.append('logo', files[0], fileName)
 
@@ -86,14 +86,14 @@ class Config extends Component {
 						className="menu__tree"
 						treeData={treeData}
 						onChange={data => handleMenuChange(data)}
-						getNodeKey={item => item.node._id}
+						getNodeKey={item => item.treeIndex}
 						generateNodeProps={rowInfo => ({
 							buttons: [
 								<button className="btn btn-danger" 
 									onClick={() => handleMenuChange(removeNodeAtPath({
 										treeData: treeData,
 										path: rowInfo.path,
-										getNodeKey: info => info.node._id
+										getNodeKey: info => info.treeIndex
 									}))}
 								>Delete</button>
 							]
