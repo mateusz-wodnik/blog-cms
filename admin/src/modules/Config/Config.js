@@ -12,35 +12,26 @@ import ImageChange from './ImageChange'
 
 class Config extends Component {
 	state = {
-		img: '',
-		logo: '',
-		icon: '',
 		menu: [],
-		menuItems: []
 	}
 
 	componentDidMount = () => {
+		// Fetch config from database
 		fetch('/api/config/')
-			.then(res => {
-				console.log(res)
-				return res.json()
-			})
-			.then(config => {
-				console.log(config)
-				this.setState({...config})
-			})
+			.then(res => res.json())
+			.then(config => this.setState({...config}))
 			.catch(console.error)
 	}
 
 	handleMenuChange = (treeData) => {
-		console.log(treeData)
+		// Convert treeData to proper database, initial format
 		const menu = convert(treeData)
-		console.log(menu)
 		return this.setState({menu})
 	}
 
 
-	handleMenuConfirm = (treeData) => {
+	handleMenuConfirm = () => {
+		// Update menu changes on confirm button click using actual menu state
 		fetch('/api/config/menu', {
 			method: 'POST',
 			headers: {
@@ -49,28 +40,17 @@ class Config extends Component {
 			},
 			body: JSON.stringify(this.state.menu)
 		}).then(res => this.setState({menu: this.state.menu}))
+			.catch(console.error)
 	}
 
+	/**
+	 * Create new menu item on submit
+	 */
 	handleAddMenuItem = (e) => {
 		e.preventDefault()
 		const { name, link } = e.target
 		const item = { name: name.value, link: link.value }
-		console.log(item)
-		fetch('/api/config/menu/item', {
-			method: 'POST',
-			headers: {
-				'Accept': 'application/json',
-				'Content-Type': 'application/json'
-			},
-			body: JSON.stringify(item)
-		}).then(item => item.json())
-			.then(newItem => {
-				console.log(newItem)
-				this.setState({
-					menu: [...this.state.menu, newItem]
-				})
-			})
-			.catch(err => console.log(err))
+		this.setState({ menu: [...this.state.menu, item] })
 	}
 
 	handleImage = (e) => {

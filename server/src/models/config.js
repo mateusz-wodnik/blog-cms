@@ -1,19 +1,27 @@
 import mongoose from 'mongoose';
 const Schema = mongoose.Schema;
+// import MenuItemSchema from './menuItem'
 
-const ConfigSchema = new Schema({
-	"menu": [{}],
+const MenuItemSchema = new Schema({
+	"name": { type: String, default: 'No name' },
+	"link": { type: String, default: 'No link' },
 }, { timestamps: true });
 
-const autoPopulateLead = function(next) {
-	this.populate('menu');
-	this.populate('dropdown');
-	next();
-};
+MenuItemSchema.add({ "dropdown": [ MenuItemSchema ] })
 
-ConfigSchema.
-pre('findOne', autoPopulateLead).
-pre('find', autoPopulateLead);
+const ConfigSchema = new Schema({
+	"menu": [MenuItemSchema],
+}, { timestamps: true });
+
+// const autoPopulateLead = function(next) {
+// 	this.populate('menu');
+// 	this.populate('dropdown');
+// 	next();
+// };
+
+// ConfigSchema.
+// pre('findOne', autoPopulateLead).
+// pre('find', autoPopulateLead);
 
 
 
