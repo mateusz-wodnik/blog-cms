@@ -124,6 +124,7 @@ class Config extends Component {
 				<form className="config__form" >
 					<ImageChange handleImage={handleImage} label="Site logo" name="logo" file="logo.jpg" />
 					<ImageChange handleImage={handleImage} label="Site icon" name="icon" file="icon.png" />
+					<ImageChange handleImage={handleImage} label="Background" name="background" file="background.jpg" />
 					<ImageChange handleImage={handleImage} label="Admin avatar" name="avatar" file="avatar.jpg" />
 				</form>
 			</main>
