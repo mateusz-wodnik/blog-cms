@@ -14,8 +14,8 @@ var autoPopulateLead = function(next) {
 	next();
 };
 
-CommentSchema.
-pre('findOne', autoPopulateLead)
+CommentSchema
+	.pre('findOne', autoPopulateLead)
 	.pre('find', function(next) {
 		if(this.getQuery()._id) this.populate('response')
 		next()

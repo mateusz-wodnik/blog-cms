@@ -1,6 +1,5 @@
 import { Router } from 'express';
 import * as CommentController from '../controllers/comment.controller';
-import { validator } from './validators/post.validator'
 import uploadCommentImage from './middlewares/comment'
 
 const router = new Router();

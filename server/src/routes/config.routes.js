@@ -1,6 +1,5 @@
 import { Router } from 'express';
 import * as ConfigController from '../controllers/config.controller';
-import { validator } from './validators/post.validator'
 import postImages from './middlewares/postImages'
 
 const router = new Router();

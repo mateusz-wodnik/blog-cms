@@ -1,6 +1,5 @@
 import { Router } from 'express';
 import * as PostController from '../controllers/post.controller';
-import { validator } from './validators/post.validator'
 import uploadImage from './middlewares/postImages'
 
 const router = new Router();

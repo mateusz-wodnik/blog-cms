@@ -1,7 +1,6 @@
 var gulp = require('gulp');
 var babel = require('gulp-babel');
 var nodemon = require('gulp-nodemon');
-var concat = require('gulp-concat');
 
 gulp.task('default', ['server', 'nodemon'], function () {
 	gulp.watch('src/**/*.js', ['server'])
@@ -14,7 +13,6 @@ gulp.task('server', function() {
 			presets: ['env'],
 			plugins: ['transform-object-rest-spread']
 		}))
-		// .pipe(concat('server.js'))
 		.pipe(gulp.dest('dist'))
 });
 

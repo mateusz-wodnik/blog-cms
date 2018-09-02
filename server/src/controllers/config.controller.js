@@ -9,7 +9,6 @@ export function uploadLogo(req, res) {
 
 export function updateMenu(req, res) {
 	console.log('POST update config menu')
-	console.log(req.body)
 	Config.update(
 		{},
 		{menu: req.body},
@@ -32,7 +31,6 @@ export function addMenuItem(req, res) {
 	console.log('POST new menu item')
 	const { name, link } = req.body
 	const menuItem = { name, link }
-	console.log(menuItem)
 	MenuItem.create(menuItem)
 		.then(item => res.send(item))
 		.catch(err => res.send(err))
