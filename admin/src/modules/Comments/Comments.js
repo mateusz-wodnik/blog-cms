@@ -44,7 +44,7 @@ class Comments extends Component {
 	}
 
 	render() {
-		const { comments, lastAccess } = this.props
+		const { comments, lastAccess, admin } = this.props
 		return(
 			<main className="admin__comments comments">
 				<ul onSubmit={this.handleResponse} className="comments__list list-group">
@@ -54,8 +54,8 @@ class Comments extends Component {
 							comments={comments}
 							comment={comment}
 							handleResponse={this.handleResponse}
-							username={this.props.admin.name}
-							avatar={this.props.admin.avatar}
+							username={admin.name}
+							avatar={admin.avatar}
 							isNew={lastAccess < new Date(comment.updatedAt)}
 						/> : null
 					)}
