@@ -14,7 +14,7 @@
     "client": "cd client && npm start",
     "admin": "cd admin && npm start",
     "server": "cd server && gulp",
-    "build-server": "cd server && cp -r dist ../production && cp -r package.json ../production && cd ../production && npm install",
+    "build-server": "cd server && gulp && cp -r dist ../production && cp -r package.json ../production && cd ../production && npm install",
     "build-client": "cd client && npm run build  && cp -r build ../production/public",
     "build-admin": "cd admin && npm run build && cp -r build ../production/admin",
     "build": "npm run build-server && npm run build-client && npm run build-admin"
