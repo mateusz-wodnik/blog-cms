@@ -1,7 +1,6 @@
 export const convert = (arr) => {
     return arr.map(item => {
         const { title: name, subtitle: link, children: dropdown, ...rest } = item
-        console.log(dropdown)
         const newArr = { name, link, dropdown, ...rest }
         if(dropdown) newArr.dropdown = convert(dropdown)
         return newArr

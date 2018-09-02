@@ -135,7 +135,7 @@ class NewPostContainer extends Component {
 				})
 				.catch(err => {
 					this.setState({post: {}, err: true})
-					console.log(err);
+					console.error(err);
 				})
 		}
 	}

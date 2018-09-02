@@ -20,13 +20,16 @@ class Comments extends Component {
 	handleResponse = (e) => {
 		e.preventDefault();
 		const { admin, comments, handleState } = this.props
-		const { dataset, response } = e.target
+		const { dataset, response, commentResponseSubmit } = e.target
 		const id = dataset.id
 		const body = {
 			content: response.value,
 			username: admin.name,
 			avatar: '../images/avatar.jpg'
 		}
+		// Change submit button color to yellow during fetch request
+		commentResponseSubmit.classList.add('btn-warning')
+		commentResponseSubmit.classList.remove('btn-danger')
 		fetch(`/api/comments/response/${id}`, {
 			method: 'POST',
 			headers: {
@@ -36,11 +39,16 @@ class Comments extends Component {
 			body: JSON.stringify(body)
 		}).then(res => res.json())
 			.then(res => {
+				// On success reset submit button color to initial state
+				commentResponseSubmit.classList.remove('btn-warning')
 				comments[id].response.push(res._id)
 				comments[res._id] = res
 				handleState({comments})
 			})
-			.catch(console.error)
+			.catch(err => {
+				// On error set submit button to red
+				commentResponseSubmit.classList.add('btn-danger')
+			})
 	}
 
 	render() {

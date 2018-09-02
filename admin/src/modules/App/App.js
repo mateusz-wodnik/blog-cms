@@ -1,10 +1,9 @@
 import React, { Component } from 'react';
-import { Route, Switch } from 'react-router-dom'
+import { Route } from 'react-router-dom'
+import { hot } from 'react-hot-loader';
 import './App.css';
 
-import { hot } from 'react-hot-loader';
-import Sidebar from '../Sidebar/Sidear'
-import NewPost from '../NewPost/NewPost'
+import Sidebar from '../Sidebar/Sidebar'
 import EditPost from '../EditPost/EditPost'
 import Comments from '../Comments/Comments'
 import NewPostContainer from '../NewPost/NewPostContainer'
@@ -27,6 +26,7 @@ class App extends Component {
 			.then(res => {
 				const categories = []
 				res.forEach(cat => categories.push(...cat.categories))
+				// Get all unique categories names
 				this.setState({categories: [...new Set(categories)]})
 			})
 			.catch(console.error)
@@ -53,26 +53,26 @@ class App extends Component {
 		this.setState({categories})
 	}
 
-  render() {
+	render() {
 		const { categories, comments, lastAccess, admin } = this.state
-    return (
-      <div className="admin">
+		return (
+			<div className="admin">
 				<Route path={`/`} component={Sidebar} />
 				<Route path={`/new-post`} render={(props) => <NewPostContainer {...props} categories={categories} handleNewCategory={this.handleNewCategory} />} />
 				<Route path={`/edit-post`} render={(props) => <EditPost {...props} categories={categories}/>} />
 				<Route path={`/comments`} render={(props) =>
 					<Comments {...props}
-										handleState={this.handleState}
-										admin={admin}
-										lastAccess={lastAccess}
-										comments={comments}
-										handleComments={this.handleComments}
+								handleState={this.handleState}
+								admin={admin}
+								lastAccess={lastAccess}
+								comments={comments}
+								handleComments={this.handleComments}
 					/>}
 				/>
 				<Route path={`/config`} render={(props) => <Config {...props} admin={admin} lastAccess={lastAccess} />} />
-      </div>
-    );
-  }
+			</div>
+		);
+	}
 }
 
 export default hot(module)(App);

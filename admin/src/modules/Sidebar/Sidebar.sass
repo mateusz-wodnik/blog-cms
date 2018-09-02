@@ -3,13 +3,13 @@
 .sidebar
   width: 80px
   background: rgba(var(--color-3), 1)
-  +e(top)
   +e(logo)
     padding: 5px
-  +e(nav)
   +e(link)
     background: rgba(var(--color-4), 1)
     font-size: 2em
     &:hover
       background: rgba(var(--color-4), 0.5)
-  +e(bottom)
+    +m(active)
+      background: rgba(var(--color-3), 1)
+

@@ -1,6 +1,5 @@
 import React, { Component } from'react';
 import { Route, Switch } from'react-router-dom'
-import NewPost from '../NewPost/NewPost'
 import Categories from './Categories'
 
 import './EditPost.css'
@@ -16,12 +15,11 @@ class EditPost extends Component {
 		}
 	}
 	componentDidMount() {
-		console.log(this.props)
 		// Fetch all posts info
 		fetch('/api/posts')
 			.then(res => res.json())
 			.then(posts => this.setState({posts}))
-			.catch(err => console.log(err))
+			.catch(console.error)
 	}
 
 	render() {

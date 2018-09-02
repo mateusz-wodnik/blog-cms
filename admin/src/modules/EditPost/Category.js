@@ -1,7 +1,7 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faHandPaper, faEdit } from '@fortawesome/free-regular-svg-icons'
+import { faEdit } from '@fortawesome/free-regular-svg-icons'
 
 const Category = ({name, posts}) => (
 	<div className="edit-post__category card">
