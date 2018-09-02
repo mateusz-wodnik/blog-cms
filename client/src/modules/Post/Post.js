@@ -47,20 +47,17 @@ class Post extends Component {
 					prev
 				})
 			})
-	}
-
-	componentWillUnmount = () => {
-		// document.querySelector('.blog__header').style.height = '100vh'
+			.catch(console.error)
 	}
 
 	handleAddComment = (e) => {
 		e.preventDefault()
-		const {files, username, content, name, form} = e.target
+		const { username, content } = e.target
 		const id = this.props.match.params.post
+		// Once user choose his avatar it will be fetched from his localStorage rather than from server
 		localStorage.setItem('username', username.value)
 		const body = new FormData()
-		console.log(typeof this.state.img)
-		// if localstorage is undefined or state.img was set to File object set File object,if not set link from localstorage
+		// If localstorage is undefined or state.img was set to File object set File object,if not set link from localstorage
 		body.append('avatar', localStorage.getItem('avatar') === 'undefined' || typeof this.state.img === 'object' ? this.state.img : localStorage.getItem('avatar'))
 		body.append('username', username.value)
 		body.append('content', content.value)
@@ -69,7 +66,6 @@ class Post extends Component {
 			body: body
 		}).then(res => res.json())
 			.then(comment => {
-				console.log(comment)
 				localStorage.setItem('avatar', comment.avatar)
 				this.setState({comments: [...this.state.comments, comment]})
 			})
@@ -77,7 +73,6 @@ class Post extends Component {
 	}
 
 	handleCommentImage = (e) => {
-		console.log(e.target)
 		const files = e.target.files
 		this.setState({img: files[0]})
 		const fReader = new FileReader()
@@ -87,7 +82,6 @@ class Post extends Component {
 
 	render() {
 		const { title, date, comments, content, next, prev } = this.state
-		console.log(comments)
 		return(
 			<section className="blog__post post">
 				<header id="headerImage" className="post__header">

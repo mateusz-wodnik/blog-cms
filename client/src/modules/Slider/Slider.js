@@ -14,16 +14,12 @@ class Slider extends Component {
 	componentDidMount() {
 		fetch(`/api/posts?short=true&slider=true`)
 			.then(res => res.json())
-			.then(slider => {
-				console.log(slider)
-				this.setState({slider})
-			})
-			.catch(err => console.log(err))
+			.then(slider => this.setState({slider}))
+			.catch(console.error)
 	}
 
 	render() {
 		const { slider } = this.state
-		console.log(slider)
 		return (
 			<section className="blog__slider slider">
 				<Carousel className="slider__wrapper" showThumbs={false} showStatus={false}>

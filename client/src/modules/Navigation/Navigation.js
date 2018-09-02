@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom'
 import './Navigation.css';
-import data from './navigation.data';
 
 
 class Navigation extends Component {
@@ -25,7 +24,6 @@ class Navigation extends Component {
 const RenderNavigationItems = ({items, dropdown}) => (
 	items.map((item, idx) => (
 		<div className={`nav__item${dropdown ? ` nav__item--dropdown` : ''}`} key={idx}>
-		{console.log(item)}
 			{item.link ?
 				<Link to={`/categories/${item.link}`} className="nav__link">{item.name}</Link> :
 				<Link to={`/categories/${item.name.trim().replace(' ', '-')}`} className="nav__link"

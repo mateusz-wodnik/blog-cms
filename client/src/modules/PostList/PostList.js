@@ -29,7 +29,7 @@ class PostList extends Component {
 					title: category || 'Nowe posty'
 				})
 			})
-			.catch(err => console.log(err))
+			.catch(console.error)
 	}
 
 	handleSelect = (e) => {
