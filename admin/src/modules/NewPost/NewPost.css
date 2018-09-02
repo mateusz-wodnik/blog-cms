@@ -1,9 +1,8 @@
 .new-post__form {
   background-color: rgba(var(--color-white), 0.8);
   display: grid;
-  grid-template-rows: auto auto auto auto;
-  grid-template-columns: 50% 50%;
-  grid-template-areas: "top top" "left right-0" "left right-1" "bottom bottom";
+  grid-template: repeat(5, auto)/repeat(2, 1fr);
+  grid-template-areas: "title title" "categories categories" "appearance appearance" "image image" "bottom bottom";
   justify-items: stretch; }
   .new-post__form .form-group {
     margin: 10px;
@@ -11,24 +10,29 @@
     background-color: rgba(var(--color-white), 0.8); }
 
 .form__title {
-  grid-area: top; }
+  grid-area: title; }
 
 .form__categories {
-  grid-area: left;
+  grid-area: categories;
   max-height: 200px;
   overflow: auto; }
 
 .form__appearance {
-  grid-area: right-0; }
+  grid-area: appearance;
+  display: flex;
+  flex-flow: column;
+  justify-content: center;
+  align-items: center; }
 
 .form__image {
-  grid-area: right-1;
+  grid-area: image;
   display: flex;
   justify-content: center;
   align-items: center;
   position: relative;
   background-size: cover !important;
-  -moz-background-clip: revert; }
+  -moz-background-clip: revert;
+  overflow: hidden; }
   .form__image:hover {
     background-color: rgba(var(--color-3), 0.2); }
   .form__image:before {
@@ -39,6 +43,11 @@
     height: 100%;
     cursor: pointer; }
 
+@media (min-width: 768px) {
+  .new-post__form {
+    grid-template: repeat(4, 1fr)/repeat(2, 1fr);
+    grid-template-areas: "title title" "categories appearance" "categories image" "bottom bottom"; } }
+
 .new-post {
   display: flex; }
   .new-post__edit {
@@ -47,7 +56,7 @@
     padding: 10px;
     background: rgba(var(--color-5), 1);
     transition: 1s;
-    overflow: hidden;
+    overflow: auto;
     flex: 1; }
   .new-post__save {
     width: 100%;

@@ -27,12 +27,10 @@ class EditPost extends Component {
 	render() {
 		const { categories } = this.props
 		return(
-			<main className="edit-post">
 				<Switch>
-					<Route exact path={`/edit-post`} render={() => <Categories categories={categories} posts={this.state.posts} />}/>
+					<Route exact path={`/edit-post`} render={() => <main className="edit-post"><Categories categories={categories} posts={this.state.posts} /></main>}/>
 					<Route path={`/edit-post/:id`} render={(props) => <NewPostContainer {...props} categories={categories} />}/>
 				</Switch>
-			</main>
 		)
 	}
 }

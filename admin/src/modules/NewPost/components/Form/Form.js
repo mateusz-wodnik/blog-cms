@@ -14,12 +14,12 @@ const Form = ({ categories,
 	<form className="new-post__form" onChange={handler}>
 		<div className="form__title form-group">
 			<input type="text"
-						 className="form-control"
-						 id="title"
-						 name="title"
-						 aria-describedby="title"
-						 placeholder="Title"
-						 value={title}
+					className="form-control"
+					id="title"
+					name="title"
+					aria-describedby="title"
+					placeholder="Title"
+					value={title}
 			/>
 		</div>
 		<div className="form__categories form-group">
@@ -31,39 +31,39 @@ const Form = ({ categories,
 					<div className="input-group-prepend">
 						<div className="input-group-text">
 							<input type="checkbox"
-										 className="form-check-input"
-										 name="newCategory"
-										 id="newCategory"
-										 aria-describedby="categories"
+									className="form-check-input"
+									name="newCategory"
+									id="newCategory"
+									aria-describedby="categories"
 							/>
 						</div>
 					</div>
 					<input type="text"
-								 name="newCategory"
-								 className="form-control"
-								 placeholder="New category"
+							name="newCategory"
+							className="form-control"
+							placeholder="New category"
 					/>
 				</div>
 			</div>
 		</div>
-		<div className="form__apearance form-group d-flex flex-column justify-content-center align-items-end">
+		<div className="form__appearance form-group">
 			<div className="form-check">
 				<input type="checkbox"
-							 className="form-check-input"
-							 name="featured"
-							 id="featured"
-							 aria-describedby="featured"
-							 checked={featured}
+						className="form-check-input"
+						name="featured"
+						id="featured"
+						aria-describedby="featured"
+						checked={featured}
 				/>
 				<label className="form-check-label" htmlFor="featured">featured</label>
 			</div>
 			<div className="form-check">
 				<input type="checkbox"
-							 className="form-check-input"
-							 name="slider"
-							 id="slider"
-							 aria-describedby="slider"
-							 checked={slider}
+						className="form-check-input"
+						name="slider"
+						id="slider"
+						aria-describedby="slider"
+						checked={slider}
 				/>
 				<label className="form-check-label" htmlFor="slider">slider</label>
 			</div>

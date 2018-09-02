@@ -1,5 +1,5 @@
 .edit-post {
-  padding: 20px; }
+  height: 100vh; }
   .edit-post__categories {
     display: grid;
     grid-template-columns: 1fr;
