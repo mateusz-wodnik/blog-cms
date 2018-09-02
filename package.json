@@ -4,7 +4,9 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "start": "npm run server & npm run client & npm run admin",
+    "postinstall": "npm run build-server && npm run build-client && npm run build-admin",
+    "start": "npm run server",
+    "start-all": "npm run server & npm run client & npm run admin",
     "front": "npm run client & npm run admin",
     "client": "cd client && npm start",
     "admin": "cd admin && npm start",
