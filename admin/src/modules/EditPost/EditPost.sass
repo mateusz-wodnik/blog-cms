@@ -1,27 +1,26 @@
 @import "../../mixins.sass"
 
 .edit-post
+  padding: 20px
   +e(categories)
-    display: flex
-    flex-flow: row wrap
-    justify-content: space-around
-    align-content: space-evenly
+    display: grid
+    grid-template-columns: 1fr
     align-items: flex-start
   +e(category)
-    position: relative
-    margin-bottom: 20px
-    width: 300px
+    position: sticky
+    top: 0
+    margin: 10px
     background: rgba(var(--color-5), 0.5)
   +e(posts)
     border: 1px solid rgba(var(--color-3), 1)
     min-height: 80px
+    max-height: 350px
+    overflow: auto
     background: rgba(var(--color-5), 1)
   +e(post)
     &:hover .edit-post__actions
       opacity: 1
       z-index: 1
-  +e(date)
-    text-align: right
   +e(actions)
     display: flex
     justify-content: space-around
@@ -46,3 +45,13 @@
       background: rgba(var(--color-4), 1)
     +m(edit)
       background: rgba(var(--color-4), 0.7)
+
+@media (min-width: 768px)
+  .edit-post
+    +e(categories)
+      grid-template-columns: repeat(3, 1fr)
+
+@media (min-width: 1200px)
+  .edit-post
+    +e(categories)
+      grid-template-columns: repeat(5, 1fr)
