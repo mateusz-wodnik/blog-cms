@@ -3,13 +3,14 @@ import React from 'react';
 import './Form.css'
 
 const Form = ({ categories,
-								postCategories,
-								featured,
-								slider,
-								handler,
-								title,
-								next,
-								prev
+				postCategories,
+				featured,
+				slider,
+				handler,
+				title,
+				next,
+				prev,
+				children
 }) => (
 	<form className="new-post__form" onChange={handler}>
 		<div className="form__title form-group">
@@ -47,70 +48,19 @@ const Form = ({ categories,
 			</div>
 		</div>
 		<div className="form__appearance form-group">
-			<div className="form-check">
-				<input type="checkbox"
-						className="form-check-input"
-						name="featured"
-						id="featured"
-						aria-describedby="featured"
-						checked={featured}
-				/>
-				<label className="form-check-label" htmlFor="featured">featured</label>
-			</div>
-			<div className="form-check">
-				<input type="checkbox"
-						className="form-check-input"
-						name="slider"
-						id="slider"
-						aria-describedby="slider"
-						checked={slider}
-				/>
-				<label className="form-check-label" htmlFor="slider">slider</label>
-			</div>
+			<Appearance id="featured" value={featured} />
+			<Appearance id="slider" value={slider} />
 		</div>
 		<div className="form__image form-group">
 			<input type="file"
-						 className="form-control-file"
-						 id="img"
-						 name="img"
+					className="form-control-file"
+					id="img"
+					name="img"
 			/>
 		</div>
-		<div className="form__link form-group">
-			<input type="text"
-						 className="form-control"
-						 id="prev-name"
-						 name="prev"
-						 aria-describedby="title"
-						 placeholder="text"
-						 value={prev.name}
-			/>
-			<input type="text"
-						 className="form-control"
-						 id="prev-link"
-						 name="prev"
-						 aria-describedby="title"
-						 placeholder="link"
-						 value={prev.link}
-			/>
-		</div>
-		<div className="form__link form-group">
-			<input type="text"
-						 className="form-control"
-						 id="next-name"
-						 name="next"
-						 aria-describedby="title"
-						 placeholder="text"
-						 value={next.name}
-			/>
-			<input type="text"
-						 className="form-control"
-						 id="next-link"
-						 name="next"
-						 aria-describedby="title"
-						 placeholder="link"
-						 value={next.link}
-			/>
-		</div>
+		<Link id="prev" name={prev.name} link={prev.link} />
+		<Link id="next" name={next.name} link={next.link} />
+		{children}
 	</form>
 )
 
@@ -122,15 +72,46 @@ const Category = ({name, featured}) => (
 			<div className="input-group-prepend">
 				<div className="input-group-text">
 					<input type="checkbox"
-								 className="form-check-input"
-								 name="categories"
-								 id={name}
-								 aria-describedby="categories"
-								 checked={featured}
+							className="form-check-input"
+							name="categories"
+							id={name}
+							aria-describedby="categories"
+							defaultChecked={featured}
 					/>
 				</div>
 			</div>
 			<input type="text" className="form-control" value={name} disabled={true} />
 		</div>
+	</div>
+)
+
+const Link = ({name, link, id}) => (
+	<div className="form__link form-group">
+		<input type="text"
+				className="form-control"
+				id={`${id}-name`}
+				name={id}
+				placeholder="text"
+				value={name}
+		/>
+		<input type="text"
+				className="form-control"
+				id={`${id}-link`}
+				name={id}
+				placeholder="link"
+				value={link}
+		/>
+	</div>
+)
+
+const Appearance = ({id, value}) => (
+	<div className="form-check">
+		<input type="checkbox"
+				className="form-check-input"
+				name={id}
+				id={id}
+				checked={value}
+		/>
+		<label className="form-check-label" htmlFor={id}>{id}</label>
 	</div>
 )
