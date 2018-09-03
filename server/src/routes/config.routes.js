@@ -11,8 +11,6 @@ router.route('/').get(ConfigController.getConfig);
 
 router.route('/menu').post(ConfigController.updateMenu);
 
-router.route('/menu/item').post(ConfigController.addMenuItem);
-
 router.route('/images').post(postImages.single('logo'), ConfigController.uploadLogo);
 
 export default router;

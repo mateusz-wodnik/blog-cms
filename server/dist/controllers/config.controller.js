@@ -6,11 +6,6 @@ Object.defineProperty(exports, "__esModule", {
 exports.uploadLogo = uploadLogo;
 exports.updateMenu = updateMenu;
 exports.getConfig = getConfig;
-exports.addMenuItem = addMenuItem;
-
-var _menuItem = require('../models/menuItem');
-
-var _menuItem2 = _interopRequireDefault(_menuItem);
 
 var _config = require('../models/config');
 
@@ -37,19 +32,5 @@ function getConfig(req, res) {
 	_config2.default.find().then(function (configs) {
 		console.log(configs);
 		res.send(configs[0]);
-	});
-}
-
-function addMenuItem(req, res) {
-	console.log('POST new menu item');
-	var _req$body = req.body,
-	    name = _req$body.name,
-	    link = _req$body.link;
-
-	var menuItem = { name: name, link: link };
-	_menuItem2.default.create(menuItem).then(function (item) {
-		return res.send(item);
-	}).catch(function (err) {
-		return res.send(err);
 	});
 }
