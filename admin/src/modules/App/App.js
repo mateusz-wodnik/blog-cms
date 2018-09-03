@@ -57,10 +57,10 @@ class App extends Component {
 		const { categories, comments, lastAccess, admin } = this.state
 		return (
 			<div className="admin">
-				<Route path={`/`} component={Sidebar} />
-				<Route path={`/new-post`} render={(props) => <NewPostContainer {...props} categories={categories} handleNewCategory={this.handleNewCategory} />} />
-				<Route path={`/edit-post`} render={(props) => <EditPost {...props} categories={categories}/>} />
-				<Route path={`/comments`} render={(props) =>
+				<Route path={`/admin`} component={Sidebar} />
+				<Route path={`/admin/new-post`} render={(props) => <NewPostContainer {...props} categories={categories} handleNewCategory={this.handleNewCategory} />} />
+				<Route path={`/admin/edit-post`} render={(props) => <EditPost {...props} categories={categories}/>} />
+				<Route path={`/admin/comments`} render={(props) =>
 					<Comments {...props}
 								handleState={this.handleState}
 								admin={admin}

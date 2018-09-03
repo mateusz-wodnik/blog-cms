@@ -37,11 +37,11 @@ var server = _http2.default.Server(app);
 app.use(_bodyParser2.default.json());
 
 // Handle two separated static sources for admin and client
-app.use(_express2.default.static(__dirname + '/../public'));
-app.use(_express2.default.static(__dirname + '/../admin'));
+app.use(_express2.default.static(__dirname + '/public'));
+app.use(_express2.default.static(__dirname + '/admin'));
 // On "/admin" request send admin html file
-app.get('/admin/*', function (req, res) {
-	res.sendFile(__dirname + '/../../production/admin/index.html');
+app.get('/admin', function (req, res) {
+	res.sendFile(__dirname + '/admin/index.html');
 });
 // Routers
 

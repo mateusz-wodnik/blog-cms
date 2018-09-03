@@ -11,13 +11,13 @@ const Sidebar = () => (
 			<img src={`/images/logo.jpg`} alt="logo" className="sidebar__logo img-fluid"/>
 		</header>
 		<nav className="sidebar__nav nav flex-column">
-			<NavLink to={`/new-post`} className="sidebar__link nav-link" activeClassName='sidebar__link--active'  ><FontAwesomeIcon icon={faPlus}/></NavLink>
-			<NavLink to={`/edit-post`} className="sidebar__link nav-link" activeClassName='sidebar__link--active' ><FontAwesomeIcon icon={faEdit}/></NavLink>
-			<NavLink to={`/comments`} className="sidebar__link nav-link" activeClassName='sidebar__link--active' ><FontAwesomeIcon icon={faComments}/></NavLink>
-			<NavLink to={`/config`} className="sidebar__link nav-link" activeClassName='sidebar__link--active' ><FontAwesomeIcon icon={faCogs}/></NavLink>
+			<NavLink to={`/admin/new-post`} className="sidebar__link nav-link" activeClassName='sidebar__link--active'  ><FontAwesomeIcon icon={faPlus}/></NavLink>
+			<NavLink to={`/admin/edit-post`} className="sidebar__link nav-link" activeClassName='sidebar__link--active' ><FontAwesomeIcon icon={faEdit}/></NavLink>
+			<NavLink to={`/admin/comments`} className="sidebar__link nav-link" activeClassName='sidebar__link--active' ><FontAwesomeIcon icon={faComments}/></NavLink>
+			<NavLink to={`/admin/config`} className="sidebar__link nav-link" activeClassName='sidebar__link--active' ><FontAwesomeIcon icon={faCogs}/></NavLink>
 		</nav>
 		<footer className="sidebar__bottom nav flex-column mt-auto">
-			<NavLink to={`/logout`} className="sidebar__link nav-link" ><FontAwesomeIcon icon={faSignOutAlt}/></NavLink>
+			<NavLink to={`/admin/logout`} className="sidebar__link nav-link" ><FontAwesomeIcon icon={faSignOutAlt}/></NavLink>
 		</footer>
 	</aside>
 )

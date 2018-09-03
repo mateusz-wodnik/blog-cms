@@ -8,7 +8,7 @@ import registerServiceWorker from './registerServiceWorker';
 
 render(
 	<BrowserRouter>
-		<Route path="/" component={App}/>
+		<Route path="/admin" component={App}/>
 	</BrowserRouter>,
 	document.getElementById('root')
 );

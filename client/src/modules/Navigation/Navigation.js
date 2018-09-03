@@ -12,6 +12,7 @@ class Navigation extends Component {
 		fetch('/api/config')
 			.then(res => res.json())
 			.then(config => this.setState({menu: config.menu}))
+			.catch(console.error)
 	}
 	
 	render = () => (
@@ -21,7 +22,7 @@ class Navigation extends Component {
 	)
 }
 
-const RenderNavigationItems = ({items, dropdown}) => (
+const RenderNavigationItems = ({items=[], dropdown=[]}) => (
 	items.map((item, idx) => (
 		<div className={`nav__item${dropdown ? ` nav__item--dropdown` : ''}`} key={idx}>
 			{item.link ?
