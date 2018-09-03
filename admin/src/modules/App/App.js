@@ -69,7 +69,7 @@ class App extends Component {
 								handleComments={this.handleComments}
 					/>}
 				/>
-				<Route path={`/config`} render={(props) => <Config {...props} admin={admin} lastAccess={lastAccess} />} />
+				<Route path={`/admin/config`} render={(props) => <Config {...props} admin={admin} lastAccess={lastAccess} />} />
 			</div>
 		);
 	}
