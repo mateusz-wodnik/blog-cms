@@ -123,7 +123,7 @@ class NewPostContainer extends Component {
 	}
 
 	componentDidMount = () => {
-		if(this.props.match.path === '/edit-post/:id') {
+		if(this.props.match.path === '/admin/edit-post/:id') {
 			fetch(`/api/posts/${this.props.match.params.id}`)
 				.then(res => res.json())
 				.then(post => {
