@@ -43,6 +43,9 @@ app.use(_express2.default.static(__dirname + '/admin'));
 app.get('/admin', function (req, res) {
 	res.sendFile(__dirname + '/admin/index.html');
 });
+app.get('/admin/*', function (req, res) {
+	res.sendFile(__dirname + '/admin/index.html');
+});
 // Routers
 
 app.use('/api/posts', _post2.default);

@@ -12,7 +12,7 @@ const Category = ({name, posts}) => (
 			{posts.map((post, idx) =>
 				<li key={post+idx} className="edit-post__post list-group-item">
 					<div className="edit-post__actions">
-						<Link to={`/edit-post/${post._id}`} className="edit-post__action edit-post__action--edit">
+						<Link to={`/admin/edit-post/${post._id}`} className="edit-post__action edit-post__action--edit">
 							<FontAwesomeIcon icon={faEdit} />
 						</Link>
 					</div>
