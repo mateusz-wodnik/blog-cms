@@ -2,7 +2,6 @@ import React, { Component } from 'react';
 import { Route, Switch } from 'react-router-dom'
 import './App.css';
 
-import { connect } from 'react-redux';
 import { hot } from 'react-hot-loader';
 
 // Import modules
@@ -31,4 +30,4 @@ class App extends Component {
   }
 }
 
-export default connect(null, null)(hot(module)(App));
+export default hot(module)(App);
