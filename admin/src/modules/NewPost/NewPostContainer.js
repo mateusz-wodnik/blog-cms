@@ -123,6 +123,7 @@ class NewPostContainer extends Component {
 	}
 
 	componentDidMount = () => {
+		// Fetch post object on edit post
 		if(this.props.match.path === '/admin/edit-post/:id') {
 			fetch(`/api/posts/${this.props.match.params.id}`)
 				.then(res => res.json())

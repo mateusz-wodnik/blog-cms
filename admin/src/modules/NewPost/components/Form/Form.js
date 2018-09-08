@@ -76,7 +76,7 @@ const Category = ({name, featured}) => (
 							name="categories"
 							id={name}
 							aria-describedby="categories"
-							defaultChecked={featured}
+							checked={featured}
 					/>
 				</div>
 			</div>
