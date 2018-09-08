@@ -1,7 +1,9 @@
 @import "../../mixins.sass"
 
 .sidebar
-  width: 80px
+  width: 0
+  overflow: hidden
+  transition: 0.4s
   background: rgba(var(--color-3), 1)
   +e(logo)
     padding: 5px
@@ -13,3 +15,28 @@
     +m(active)
       background: rgba(var(--color-3), 1)
 
+#toggleSidebar
+  position: fixed
+  top: 10px
+  left: 20px
+  transition: 0.4s
+  appearance: none
+  cursor: pointer
+  z-index: 1
+  &:after
+    content: "☰"
+    font-size: 2em
+  &:checked
+    top: 0px
+    left: 80px
+    &:after
+      content: "🗙"
+      font-size: 2em
+  &:checked ~ .sidebar
+    width: 80px
+
+@media (min-width: 768px)
+  .sidebar
+    width: 80px
+  #toggleSidebar
+    display: none
