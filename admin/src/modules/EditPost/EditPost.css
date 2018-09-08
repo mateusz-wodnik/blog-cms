@@ -9,6 +9,8 @@
     top: 0;
     margin: 10px;
     background: rgba(var(--color-5), 0.5); }
+    .edit-post__category header {
+      background: #c5dced; }
   .edit-post__posts {
     border: 1px solid rgba(var(--color-3), 1);
     min-height: 80px;

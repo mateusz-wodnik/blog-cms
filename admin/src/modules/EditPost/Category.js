@@ -5,9 +5,9 @@ import { faEdit } from '@fortawesome/free-regular-svg-icons'
 
 const Category = ({name, posts}) => (
 	<div className="edit-post__category card">
-		<div className="card-header">
+		<header className="card-header">
 			<h5 className="card-title">{name}</h5>
-		</div>
+		</header>
 		<ul className="edit-post__posts list-group list-group-flush">
 			{posts.map((post, idx) =>
 				<li key={post+idx} className="edit-post__post list-group-item">
