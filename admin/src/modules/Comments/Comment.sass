@@ -1,12 +1,13 @@
 @import "../../mixins.sass"
 
 .comments__comment.comment
-    margin: 10px auto
+    margin-bottom: 20px
+    max-width: 90%
 .comments__comment .comment
     +e(info)
         display: flex
         flex-flow: row wrap
-        justify-content: space-between
+        // justify-content: space-between
     +e(user)
         margin-right: 20px
     +e(content)

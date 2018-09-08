@@ -1,11 +1,11 @@
 @charset "UTF-8";
 .comments__comment.comment {
-  margin: 10px auto; }
+  margin-bottom: 20px;
+  max-width: 90%; }
 
 .comments__comment .comment__info {
   display: flex;
-  flex-flow: row wrap;
-  justify-content: space-between; }
+  flex-flow: row wrap; }
 
 .comments__comment .comment__user {
   margin-right: 20px; }
