@@ -25,17 +25,15 @@ export function getPosts(req, res) {
 
 export function addPost(req, res) {
 	console.log(`Received POST`)
-	try {
-		const post = JSON.parse(req.body.post)
-		post.img = `/images/${req.file.filename}`
-		Post.create(post)
-			.then(post => {
-				res.send(post)
-			})
-			.catch(err => res.send(err))
-	} catch (err) {
-		res.send(err)
-	}
+	console.log('elo')
+	const post = JSON.parse(req.body.post)
+	post.img = `/images/${req.file.filename}`
+	Post.create(post)
+		.then(res => {
+			console.log(res)
+			res.send(res)
+		})
+		.catch(err => res.send(err))
 }
 
 export function updatePost(req, res) {

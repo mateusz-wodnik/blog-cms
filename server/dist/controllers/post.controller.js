@@ -43,17 +43,15 @@ function getPosts(req, res) {
 
 function addPost(req, res) {
 	console.log('Received POST');
-	try {
-		var post = JSON.parse(req.body.post);
-		post.img = '/images/' + req.file.filename;
-		_post2.default.create(post).then(function (post) {
-			res.send(post);
-		}).catch(function (err) {
-			return res.send(err);
-		});
-	} catch (err) {
-		res.send(err);
-	}
+	console.log('elo');
+	var post = JSON.parse(req.body.post);
+	post.img = '/images/' + req.file.filename;
+	_post2.default.create(post).then(function (res) {
+		console.log(res);
+		res.send(res);
+	}).catch(function (err) {
+		return res.send(err);
+	});
 }
 
 function updatePost(req, res) {
